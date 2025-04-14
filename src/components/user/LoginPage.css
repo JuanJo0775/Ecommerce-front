@@ -1,0 +1,91 @@
+/* Contenedor principal */
+.login-container {
+  max-width: 400px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Tarjeta del login */
+.login-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Título principal */
+.login-title {
+  font-size: 28px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+/* Subtítulo */
+.login-subtitle {
+  font-size: 16px;
+  color: #777;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Etiquetas del formulario */
+.form-label {
+  font-weight: 500;
+  color: #333;
+}
+
+/* Inputs del formulario */
+.form-control {
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 16px;
+}
+
+/* Botón */
+.btn-primary {
+  background-color: #6050DC;
+  border-color: #6050DC;
+  font-size: 18px;
+  font-weight: 500;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #4b3bcb;
+  border-color: #4b3bcb;
+}
+
+/* Footer con enlaces */
+.login-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login-footer p {
+  margin: 5px 0;
+  font-size: 14px;
+}
+
+.login-footer a {
+  color: #6050DC;
+  text-decoration: none;
+}
+
+.login-footer a:hover {
+  text-decoration: underline;
+}
+
+/* Checkbox (si usás alguno) */
+.form-check-label {
+  font-size: 14px;
+  color: #555;
+}
+
+/* Fondo general y fuente */
+body {
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
