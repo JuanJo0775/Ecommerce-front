@@ -1,5 +1,6 @@
+// En src/components/ui/NavBarLink.jsx
 import React, { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom"; 
 import { AuthContext } from "../context/AuthContext";
 import { FaComments } from "react-icons/fa";
 
@@ -28,13 +29,13 @@ const NavBarLink = ({ toggleChatbot }) => {
             </NavLink>
           </li>
           <li className="nav-item">
-            <button 
-              className="btn nav-link fw-semibold" 
-              onClick={toggleChatbot}
-              style={{ background: 'none', border: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}
+            <Link 
+              to="/chat"
+              className="nav-link fw-semibold"
+              style={{ display: 'flex', alignItems: 'center', gap: '5px' }}
             >
               <FaComments /> Asistente
-            </button>
+            </Link>
           </li>
           <li className="nav-item" onClick={logout}>
             <NavLink

@@ -15,7 +15,7 @@ import UserProfilePage from "./components/user/UserProfilePage";
 import EditProfilePage from "./components/user/EditProfilePage"; // Nueva página de edición de perfil
 import ChangePasswordPage from "./components/user/ChangePasswordPage"; // Nueva página de cambio de contraseña
 import PaymentStatusPage from "./components/payments/PaymentsStatusPage";
-
+import ChatbotPage from "./components/chatbot/ChatbotPage";
 
 
 const App = () => {
@@ -67,6 +67,11 @@ const App = () => {
           } />
           <Route path="payment-status" element={<PaymentStatusPage setNumberCartItems={setNumberCartItems} />} />
           <Route path="*" element={<NotFoundPage />} />
+          <Route path="chat" element={
+            <ProtectedRoute>
+              <ChatbotPage />
+            </ProtectedRoute>
+          } />
         </Route>
       </Routes>
     </BrowserRouter>
