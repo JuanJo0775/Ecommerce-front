@@ -5,10 +5,38 @@ import api from '../../api';
 
 const PaymentSection = () => {
   const [loading, setLoading] = useState(false);
+  const [epaycoLoading, setEpaycoLoading] = useState(false);
   const [error, setError] = useState('');
   const [authStatus, setAuthStatus] = useState(false);
   const navigate = useNavigate(); 
   const cart_code = localStorage.getItem("cart_code");
+
+  // Cargar el script de ePayco al montar el componente
+  useEffect(() => {
+    // Verificar si el script ya existe para evitar duplicados
+    if (!document.getElementById('epayco-script')) {
+      const script = document.createElement('script');
+      script.id = 'epayco-script';
+      script.src = 'https://checkout.epayco.co/checkout.js';
+      script.async = true;
+      
+      // Manejar errores al cargar el script
+      script.onerror = () => {
+        console.error('Error al cargar el script de ePayco');
+        setError('No se pudo cargar el procesador de pagos de ePayco');
+      };
+      
+      document.body.appendChild(script);
+    }
+    
+    // Limpiar el script al desmontar si es necesario
+    return () => {
+      // Opcional: remover el script al desmontar
+      // Comentado porque podría ser útil mantenerlo para otras páginas
+      // const scriptElement = document.getElementById('epayco-script');
+      // if (scriptElement) document.body.removeChild(scriptElement);
+    };
+  }, []);
 
   // Verificar autenticación y cart_code al inicio
   useEffect(() => {
@@ -57,8 +85,6 @@ const PaymentSection = () => {
     if (!accessToken) {
       setError("Debes iniciar sesión para continuar");
       setLoading(false);
-      // Opcional: Redirigir a login
-      // setTimeout(() => navigate('/login'), 2000);
       return;
     }
     
@@ -99,8 +125,6 @@ const PaymentSection = () => {
           // Manejar distintos errores según el código de estado
           if (err.response.status === 401) {
             setError('Tu sesión ha expirado. Por favor, inicia sesión nuevamente.');
-            // Opcional: redirigir a login
-            // setTimeout(() => navigate('/login'), 2000);
           } else if (err.response.data.error === 'Invalid cart code') {
             setError('El código del carrito no es válido. Intenta recargar la página o volver a agregar productos al carrito.');
           } else {
@@ -111,6 +135,103 @@ const PaymentSection = () => {
         }
         
         setLoading(false);
+      });
+  }
+
+  async function epaycoPayment() {
+    setEpaycoLoading(true);
+    setError('');
+    
+    // Verificar si está disponible el SDK de ePayco
+    if (!window.ePayco) {
+      setError("El procesador de pago ePayco no está disponible. Por favor, recarga la página e intenta de nuevo.");
+      setEpaycoLoading(false);
+      return;
+    }
+    
+    // Verificaciones básicas
+    const accessToken = localStorage.getItem("access");
+    if (!accessToken) {
+      setError("Debes iniciar sesión para continuar");
+      setEpaycoLoading(false);
+      return;
+    }
+    
+    if (!cart_code) {
+      setError("No se encontró el código del carrito");
+      setEpaycoLoading(false);
+      return;
+    }
+    
+    // Verificar el carrito antes de pagar
+    const isCartValid = await verifyCartBeforePayment();
+    if (!isCartValid) {
+      setEpaycoLoading(false);
+      return;
+    }
+    
+    // Iniciar el pago con ePayco
+    api.post("initiate_epayco_payment/", { cart_code: cart_code })
+      .then(res => {
+        console.log("Respuesta ePayco:", res.data);
+        
+        // Configurar el handler de ePayco con los datos recibidos
+        try {
+          const handler = window.ePayco.checkout.configure({
+            key: res.data.public_key,
+            test: res.data.test
+          });
+          
+          // Abrir el modal de pago de ePayco
+          handler.open({
+            //Parametros obligatorios
+            name: "Productos Shoppit",
+            description: res.data.description,
+            invoice: res.data.invoice,
+            currency: res.data.currency,
+            amount: res.data.amount,
+            tax_base: res.data.tax_base,
+            tax: res.data.tax,
+            country: res.data.country,
+            lang: "es",
+
+            test: true, 
+            
+            //Parametros opcionales
+            external: res.data.external,
+            extra1: res.data.extra1,
+            response: res.data.response,
+            
+            // Datos del cliente
+            name_billing: res.data.name,
+            last_name_billing: res.data.last_name,
+            email_billing: res.data.email,
+            address_billing: res.data.address,
+            mobilephone_billing: res.data.cell_phone,
+            type_doc_billing: "cc" // Tipo de documento por defecto
+          });
+          
+          // Manejador para cuando se cierra el modal de ePayco (cancelación)
+          window.ePayco.checkout.onCloseModal = function() {
+            console.log('El usuario cerró el modal de pago');
+          }
+        } catch (e) {
+          console.error('Error al inicializar ePayco:', e);
+          setError('Error al inicializar el procesador de pagos. Por favor, intenta de nuevo.');
+        }
+        
+        setEpaycoLoading(false);
+      })
+      .catch(err => {
+        console.error('Error ePayco:', err);
+        
+        if (err.response) {
+          setError(err.response.data.error || 'Error al iniciar el pago con ePayco');
+        } else {
+          setError('Error de conexión con el servidor');
+        }
+        
+        setEpaycoLoading(false);
       });
   }
 
@@ -144,15 +265,16 @@ const PaymentSection = () => {
             <i className="bi bi-paypal"></i> {loading ? "Cargando..." : "Pagar con PayPal"}
           </button>
 
-          {/* Flutterwave Button */}
-          {/* <button 
-            className={`btn btn-warning w-100 ${styles.flutterwaveButton}`} 
-            id="flutterwave-button"
-            onClick={flutterwavePayment}
-            disabled={loading || !cart_code || !authStatus}
+          {/* ePayco Button */}
+          <button 
+            className={`btn btn-warning w-100 ${styles.epaycoButton}`} 
+            id="epayco-button"
+            onClick={epaycoPayment}
+            disabled={epaycoLoading || !cart_code || !authStatus}
+            style={{ backgroundColor: '#00a1ff', borderColor: '#00a1ff', color: 'white' }}
           >
-            <i className="bi bi-credit-card"></i> Pagar con Flutterwave
-          </button> */}
+            <i className="bi bi-credit-card"></i> {epaycoLoading ? "Cargando..." : "Pagar con ePayco"}
+          </button>
           
           {!cart_code && (
             <div className="mt-3 text-center text-danger">

@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import Error from '../ui/Error';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import "./LoginPage.css"
 import api from '../../api';
 import { AuthContext } from '../context/AuthContext';
@@ -53,11 +53,11 @@ const LoginPage = () => {
                 // Intentar asociar el carrito al usuario
                 associateCartToUser(cartCode)
                     .then(() => {
-                        const from = location?.state?.from.pathname || "/";
+                        const from = location?.state?.from?.pathname || "/";
                         navigate(from, {replace:true});
                     });
             } else {
-                const from = location?.state?.from.pathname || "/";
+                const from = location?.state?.from?.pathname || "/";
                 navigate(from, {replace:true});
             }
           })
@@ -93,7 +93,7 @@ const LoginPage = () => {
                 </form>
                 <div className="login-footer">
                     <p><a href="#">¿Olvidó su contraseña?</a></p>
-                    <p>¿No tienes cuenta? <a href="#">Regístrate</a></p>
+                    <p>¿No tienes cuenta? <Link to="/register">Regístrate</Link></p>
                 </div>
             </div>
         </div>

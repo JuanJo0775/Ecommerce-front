@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './UserInfo.module.css';
 import pic from '../../assets/default_profile.png';
 
@@ -13,9 +14,14 @@ const UserInfo = ({ userInfo }) => {
                 />
                 <h4>{userInfo.first_name} {userInfo.last_name}</h4>
                 <p className="text-muted">{userInfo.email}</p>
-                <button className="btn mt-2" style={{ backgroundColor: '#6050DC', color: 'white' }}>
-                    Editar perfil
-                </button>
+                <div className="d-grid gap-2">
+                    <Link to="/profile/edit" className="btn" style={{ backgroundColor: '#6050DC', color: 'white' }}>
+                        Editar perfil
+                    </Link>
+                    <Link to="/profile/change-password" className="btn btn-outline-secondary">
+                        Cambiar contraseña
+                    </Link>
+                </div>
             </div>
             <div className="col-md-9">
                 <div className="card mb-4">
@@ -25,14 +31,14 @@ const UserInfo = ({ userInfo }) => {
                     <div className="card-body">
                         <div className="row">
                             <div className="col-md-6">
-                                <p><strong>Nombre:</strong> {userInfo.first_name} {userInfo.last_name}</p>
-                                <p><strong>Email:</strong> {userInfo.email}</p>
-                                <p><strong>Telefono:</strong> {userInfo.phone}</p>
+                                <p><strong>Nombre:</strong> {userInfo.first_name || 'No especificado'} {userInfo.last_name || ''}</p>
+                                <p><strong>Email:</strong> {userInfo.email || 'No especificado'}</p>
+                                <p><strong>Teléfono:</strong> {userInfo.phone || 'No especificado'}</p>
                             </div>
                             <div className="col-md-6">
-                                <p><strong>Usuario:</strong> {userInfo.username}</p>
-                                <p><strong>Ciudad:</strong> {userInfo.city}</p>
-                                <p><strong>Direccion:</strong> {userInfo.address}</p>
+                                <p><strong>Usuario:</strong> {userInfo.username || 'No especificado'}</p>
+                                <p><strong>Ciudad:</strong> {userInfo.city || 'No especificada'}</p>
+                                <p><strong>Dirección:</strong> {userInfo.address || 'No especificada'}</p>
                             </div>
                         </div>
                     </div>

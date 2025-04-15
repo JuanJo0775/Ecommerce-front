@@ -6,11 +6,14 @@ import ProductPage from "./components/product/ProductPage";
 import CartPage from "./components/cart/CartPage";
 import { useState, useEffect } from "react";
 import LoginPage from "./components/user/LoginPage"; 
+import RegisterPage from "./components/user/RegisterPage"; // Nueva página de registro
 import api from "./api";
 import CheckoutPage from "./components/checkout/CheckoutPage";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
 import { AuthProvider } from "./components/context/AuthContext";
 import UserProfilePage from "./components/user/UserProfilePage";
+import EditProfilePage from "./components/user/EditProfilePage"; // Nueva página de edición de perfil
+import ChangePasswordPage from "./components/user/ChangePasswordPage"; // Nueva página de cambio de contraseña
 import PaymentStatusPage from "./components/payments/PaymentsStatusPage";
 
 
@@ -46,9 +49,24 @@ const App = () => {
             </ProtectedRoute>
           } />
           <Route path="login" element={<LoginPage />} />
-          <Route path="profile" element={<UserProfilePage />} />
+          <Route path="register" element={<RegisterPage />} /> {/* Ruta para registro */}
+          <Route path="profile" element={
+            <ProtectedRoute>
+              <UserProfilePage />
+            </ProtectedRoute>
+          } />
+          <Route path="profile/edit" element={
+            <ProtectedRoute>
+              <EditProfilePage />
+            </ProtectedRoute>
+          } />
+          <Route path="profile/change-password" element={
+            <ProtectedRoute>
+              <ChangePasswordPage />
+            </ProtectedRoute>
+          } />
+          <Route path="payment-status" element={<PaymentStatusPage setNumberCartItems={setNumberCartItems} />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="payment-status" element={<PaymentStatusPage/>} />
         </Route>
       </Routes>
     </BrowserRouter>
