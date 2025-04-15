@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import { FaComments } from "react-icons/fa";
 
-const NavBarLink = () => {
+const NavBarLink = ({ toggleChatbot }) => {
   const { isAuthenticated, username, setIsAuthenticated } = useContext(AuthContext);
 
   function logout() {
@@ -25,6 +26,15 @@ const NavBarLink = () => {
             >
               {`Hola ${username}`}
             </NavLink>
+          </li>
+          <li className="nav-item">
+            <button 
+              className="btn nav-link fw-semibold" 
+              onClick={toggleChatbot}
+              style={{ background: 'none', border: 'none', display: 'flex', alignItems: 'center', gap: '5px' }}
+            >
+              <FaComments /> Asistente
+            </button>
           </li>
           <li className="nav-item" onClick={logout}>
             <NavLink
