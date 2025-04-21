@@ -1,4 +1,3 @@
-// src/components/chatbot/ChatbotPage.jsx
 import React, { useState, useEffect, useRef } from 'react';
 import './ChatbotPage.css';
 import ChatMessage from './ChatMessage';
@@ -18,7 +17,7 @@ const ChatbotPage = () => {
   useEffect(() => {
     // Generar un ID de sesión si no existe
     if (!sessionId) {
-      setSessionId(Date.now().toString());
+      setSessionId(`session_${Date.now()}`);
     }
     scrollToBottom();
   }, [messages, sessionId]);
@@ -43,14 +42,19 @@ const ChatbotPage = () => {
         session_id: sessionId
       });
       
+      // Calcular un retraso proporcional al tamaño de la respuesta
+      const typingDelay = Math.min(800 + response.data.response.length * 3, 2500);
+      
       // Simular retraso para efecto natural
       setTimeout(() => {
         setMessages(prev => [...prev, { sender: 'bot', text: response.data.response }]);
+        
         if (response.data.suggested_products && response.data.suggested_products.length > 0) {
           setSuggestedProducts(response.data.suggested_products);
         }
+        
         setIsTyping(false);
-      }, 500);
+      }, typingDelay);
     } catch (error) {
       console.error('Error al comunicarse con el chatbot:', error);
       

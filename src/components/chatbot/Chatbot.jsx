@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { FaRobot, FaTimes, FaChevronRight, FaPaperPlane } from 'react-icons/fa';
+import { FaRobot, FaTimes, FaPaperPlane } from 'react-icons/fa';
 import './Chatbot.css';
 import api from '../../api';
 import ChatMessage from './ChatMessage';
@@ -12,20 +12,24 @@ const Chatbot = () => {
   ]);
   const [inputText, setInputText] = useState('');
   const [isTyping, setIsTyping] = useState(false);
+  const [sessionId, setSessionId] = useState('');
   const messagesEndRef = useRef(null);
   
   // Sugerencias iniciales para el usuario
   const initialSuggestions = [
     "¿Cómo realizo una compra?",
-    "¿Cómo encuentro productos?",
     "¿Cuáles son los métodos de pago?",
-    "¿Tienen servicio de envío?"
+    "¿Tienen servicio de envío?",
+    "¿Cómo encuentro productos electrónicos?"
   ];
 
-  // Scrollear automáticamente al último mensaje
+  // Generar un ID de sesión al cargar
   useEffect(() => {
+    if (!sessionId) {
+      setSessionId(`session_${Date.now()}`);
+    }
     scrollToBottom();
-  }, [messages]);
+  }, [messages, sessionId]);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -49,14 +53,18 @@ const Chatbot = () => {
     try {
       // Enviar mensaje al backend
       const response = await api.post('/chatbot/message/', {
-        message: inputText
+        message: inputText,
+        session_id: sessionId
       });
       
-      // Agregar respuesta del bot después de un pequeño delay para efecto natural
+      // Calcular un retraso proporcional al tamaño de la respuesta para simular escritura
+      const typingDelay = Math.min(1000 + response.data.response.length * 5, 3000);
+      
+      // Agregar respuesta del bot después de un retraso para efecto natural
       setTimeout(() => {
         setMessages(prev => [...prev, { sender: 'bot', text: response.data.response }]);
         setIsTyping(false);
-      }, 500);
+      }, typingDelay);
     } catch (error) {
       console.error('Error al comunicarse con el chatbot:', error);
       
