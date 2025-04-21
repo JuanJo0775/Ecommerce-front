@@ -1,0 +1,210 @@
+.manifestoContainer {
+    background-color: #F4F1ED;
+    min-height: 80vh;
+    position: relative;
+  }
+  
+  .manifestoContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/texture-bg.png');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  
+  .pageHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  
+  .pageTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    display: inline-block;
+    text-transform: uppercase;
+  }
+  
+  .decorativeLine {
+    width: 120px;
+    height: 3px;
+    background-color: #D2B48C;
+    margin: 0 auto;
+    transform: skewX(-15deg);
+  }
+  
+  .manifestoContent {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .manifestoIntro {
+    display: flex;
+    align-items: center;
+    margin-bottom: 3rem;
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    position: relative;
+  }
+  
+  .introImage {
+    width: 150px;
+    margin-right: 2rem;
+    flex-shrink: 0;
+  }
+  
+  .introImage img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .introText {
+    flex: 1;
+  }
+  
+  .introParagraph {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    color: #3E3E3E;
+    line-height: 1.6;
+    font-style: italic;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .bigQuote {
+    font-family: 'Georgia', serif;
+    font-size: 3rem;
+    color: #D9A5A0;
+    line-height: 0;
+    vertical-align: middle;
+    margin: 0 5px;
+    opacity: 0.7;
+  }
+  
+  .introSignature {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #9EBA9B;
+    font-size: 0.9rem;
+    text-align: right;
+    margin: 0;
+  }
+  
+  .manifestoSection {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  }
+  
+  .sectionTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .sectionTitle::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 2px;
+    background-color: #D9A5A0;
+    transform: skewX(-15deg);
+  }
+  
+  .manifestoSection p {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #3E3E3E;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  
+  .manifestoQuote {
+    padding: 1.5rem;
+    background-color: rgba(158, 186, 155, 0.1);
+    border-left: 3px solid #9EBA9B;
+    margin: 2rem 0;
+  }
+  
+  .manifestoQuote blockquote {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    font-style: italic;
+    color: #3E3E3E;
+    font-size: 1.3rem;
+    line-height: 1.5;
+    margin: 0;
+    text-align: center;
+  }
+  
+  .manifestoConclusion {
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: #3E3E3E;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    color: #F4F1ED;
+  }
+  
+  .manifestoConclusion p {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  
+  .manifestoSignature {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 15px;
+  }
+  
+  .manifestoSignature img {
+    width: 40px;
+    height: auto;
+  }
+  
+  .manifestoSignature span {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #9EBA9B;
+    font-size: 1rem;
+  }
+  
+  @media (max-width: 768px) {
+    .manifestoIntro {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .introImage {
+      margin-right: 0;
+      margin-bottom: 1.5rem;
+    }
+    
+    .introSignature {
+      text-align: center;
+    }
+    
+    .pageTitle {
+      font-size: 2rem;
+    }
+    
+    .sectionTitle {
+      font-size: 1.5rem;
+    }
+  }

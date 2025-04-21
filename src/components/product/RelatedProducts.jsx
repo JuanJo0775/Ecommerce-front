@@ -1,14 +1,21 @@
-import React from 'react'
+import React from 'react';
 import HomeCard from '../home/HomeCard';
+import styles from './RelatedProducts.module.css';
 
 const RelatedProducts = ({products}) => {
+    if (!products || products.length === 0) {
+        return null;
+    }
+
     return (
-        <section className="py-3 bg-light">
-            <div className="container px-4 px-lg-5 mt-3">
-                <h2 className="fw-bolder mb-4">Productos relacionados</h2>
-                <div className="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                    {products.map(products => <HomeCard key={products.id} products={products}/> )}
-                    {/* <HomeCard /> */}
+        <section className={styles.relatedSection}>
+            <div className="container px-4 px-lg-5">
+                <div className={styles.sectionHeader}>
+                    <h2 className={styles.sectionTitle}>Otras Incorrecciones que podrían gustarte</h2>
+                    <div className={styles.decorativeLine}></div>
+                </div>
+                <div className="row g-4 justify-content-center">
+                    {products.map(product => <HomeCard key={product.id} products={product}/>)}
                 </div>
             </div>
         </section>

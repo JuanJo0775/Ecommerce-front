@@ -1,0 +1,270 @@
+.productPage {
+    background-color: #F4F1ED;
+    padding-bottom: 3rem;
+  }
+  
+  .productSection {
+    padding: 3rem 0;
+  }
+  
+  .breadcrumbs {
+    margin-bottom: 2rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: #3E3E3E;
+  }
+  
+  .breadcrumbs a {
+    color: #9EBA9B;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+  
+  .breadcrumbs a:hover {
+    color: #D2B48C;
+  }
+  
+  .productGallery {
+    position: relative;
+    margin-bottom: 2rem;
+  }
+  
+  .mainImage {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(210, 180, 140, 0.3);
+    background-color: white;
+  }
+  
+  .mainImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .mainImage:hover img {
+    transform: scale(1.05);
+  }
+  
+  .thumbnails {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+  }
+  
+  .thumbnail {
+    width: 80px;
+    height: 80px;
+    border: 1px solid rgba(210, 180, 140, 0.3);
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .thumbnail:hover {
+    border-color: #9EBA9B;
+  }
+  
+  .thumbnail.active {
+    border: 2px solid #9EBA9B;
+  }
+  
+  .certificationBadge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #D9A5A0;
+    color: #3E3E3E;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    padding: 8px 15px;
+    font-size: 0.8rem;
+    max-width: 200px;
+    text-align: center;
+    transform: rotate(3deg);
+    z-index: 2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  .productInfo {
+    padding: 0 1rem;
+  }
+  
+  .productCategory {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #9EBA9B;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  
+  .productTitle {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #3E3E3E;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  
+  .productPrice {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .oldPrice {
+    text-decoration: line-through;
+    color: #D9A5A0;
+    font-size: 1.1rem;
+    margin-right: 10px;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  
+  .currentPrice {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  .productDescription {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed rgba(210, 180, 140, 0.5);
+  }
+  
+  .productDescription p {
+    font-family: 'Cormorant Garamond', serif;
+    color: #3E3E3E;
+    line-height: 1.6;
+  }
+  
+  .skuInfo {
+    font-size: 0.85rem;
+    color: #3E3E3E;
+    opacity: 0.7;
+    margin-bottom: 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+  }
+  
+  .addToCart {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .quantity {
+    display: flex;
+    align-items: center;
+    border: 1px solid #D2B48C;
+    background-color: white;
+  }
+  
+  .quantityBtn {
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    color: #3E3E3E;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .quantityBtn:hover {
+    background-color: rgba(210, 180, 140, 0.1);
+  }
+  
+  .quantityInput {
+    width: 50px;
+    height: 40px;
+    border: none;
+    border-left: 1px solid #D2B48C;
+    border-right: 1px solid #D2B48C;
+    text-align: center;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+  }
+  
+  .quantityInput:focus {
+    outline: none;
+  }
+  
+  .addToCartBtn {
+    flex: 1;
+    height: 40px;
+    background-color: #9EBA9B;
+    border: none;
+    color: #3E3E3E;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .addToCartBtn:hover {
+    background-color: #D2B48C;
+    transform: translateY(-2px);
+  }
+  
+  .addToCartBtn:disabled {
+    background-color: #D2B48C;
+    cursor: not-allowed;
+    opacity: 0.8;
+  }
+  
+  .btnIcon {
+    font-size: 0.9rem;
+  }
+  
+  .productActions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .actionBtn {
+    background: none;
+    border: none;
+    color: #3E3E3E;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+    padding: 0;
+  }
+  
+  .actionBtn:hover {
+    color: #9EBA9B;
+  }
+  
+  .shipping {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px dashed rgba(210, 180, 140, 0.5);
+  }
+  
+  .shipping p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: #3E3E3E;
+    margin-bottom: 0.5rem;
+  }

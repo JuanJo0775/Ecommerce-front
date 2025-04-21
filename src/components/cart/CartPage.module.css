@@ -1,0 +1,139 @@
+.cartPageContainer {
+    background-color: #F4F1ED;
+    min-height: 70vh;
+    position: relative;
+  }
+  
+  .cartPageContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/texture-bg.png');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  
+  .pageHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .pageTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .pageSubtitle {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #D9A5A0;
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  
+  .decorativeLine {
+    width: 100px;
+    height: 2px;
+    background-color: #D2B48C;
+    margin: 0 auto;
+    transform: skewX(-15deg);
+  }
+  
+  .cartItemsContainer {
+    margin-bottom: 2rem;
+  }
+  
+  .cartActions {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 2rem;
+  }
+  
+  .continueShoppingBtn {
+    display: inline-block;
+    background-color: transparent;
+    border: 1px solid #9EBA9B;
+    color: #3E3E3E;
+    padding: 0.7rem 1.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+  
+  .continueShoppingBtn:hover {
+    background-color: #9EBA9B;
+    color: #3E3E3E;
+    transform: translateY(-3px);
+  }
+  
+  /* Empty cart styles */
+  .emptyCartContainer {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F4F1ED;
+    padding: 3rem 0;
+  }
+  
+  .emptyCart {
+    max-width: 500px;
+    text-align: center;
+    padding: 3rem;
+    background-color: white;
+    border: 1px dashed #D2B48C;
+    position: relative;
+  }
+  
+  .emptyCart::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed #D9A5A0;
+    pointer-events: none;
+  }
+  
+  .emptyCartImage {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1.5rem;
+  }
+  
+  .emptyCartTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .emptyCartMessage {
+    font-family: 'Cormorant Garamond', serif;
+    color: #3E3E3E;
+    margin-bottom: 2rem;
+  }
+  
+  .continueShopping {
+    display: inline-block;
+    background-color: #9EBA9B;
+    color: #3E3E3E;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  
+  .continueShopping:hover {
+    background-color: #D2B48C;
+    transform: translateY(-3px);
+    color: #3E3E3E;
+  }

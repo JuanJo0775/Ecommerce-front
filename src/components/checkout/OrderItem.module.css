@@ -1,0 +1,89 @@
+.orderItem {
+    display: flex;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px dashed rgba(210, 180, 140, 0.3);
+  }
+  
+  .orderItem:last-child {
+    margin-bottom: 0;
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+  
+  .itemImage {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin-right: 1rem;
+    border: 1px solid rgba(210, 180, 140, 0.5);
+    overflow: hidden;
+  }
+  
+  .itemImage img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .orderItem:hover .itemImage img {
+    transform: scale(1.1);
+  }
+  
+  .itemTag {
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(217, 165, 160, 0.9);
+    color: #3E3E3E;
+    font-size: 0.6rem;
+    padding: 2px 5px;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .itemDetails {
+    flex: 1;
+  }
+  
+  .itemName {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    color: #3E3E3E;
+    margin-bottom: 0.5rem;
+  }
+  
+  .itemMeta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: #3E3E3E;
+    margin-bottom: 0.5rem;
+  }
+  
+  .itemQuantity {
+    opacity: 0.8;
+  }
+  
+  .itemPrice {
+    font-weight: 600;
+  }
+  
+  .itemTotal {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+    color: #3E3E3E;
+  }
+  
+  .totalPrice {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #9EBA9B;
+    font-weight: 600;
+    margin-left: 5px;
+  }

@@ -1,0 +1,105 @@
+.navLink {
+    display: inline-block;
+    margin: 0 0.7rem;
+    padding: 0.4rem 0.2rem;
+    color: #3E3E3E !important;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s;
+  }
+  
+  .navLink:hover {
+    color: #9EBA9B !important;
+  }
+  
+  .navLink::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #D2B48C;
+    transition: width 0.3s;
+    transform: skewX(-10deg);
+  }
+  
+  .navLink:hover::after {
+    width: 100%;
+  }
+  
+  .active {
+    color: #9EBA9B !important;
+    font-weight: 600;
+  }
+  
+  .active::after {
+    width: 100%;
+    background-color: #9EBA9B;
+  }
+  
+  .dropdownArrow {
+    font-size: 0.6rem;
+    margin-left: 3px;
+    vertical-align: middle;
+  }
+  
+  .dropdownMenu {
+    background-color: #F4F1ED;
+    border: 1px solid #D2B48C;
+    border-radius: 0;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    min-width: 220px;
+    margin-top: 0.5rem;
+    padding: 0.5rem 0;
+  }
+  
+  .dropdownItem {
+    color: #3E3E3E;
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    padding: 0.5rem 1rem;
+    display: block;
+    text-decoration: none;
+    transition: all 0.3s;
+    position: relative;
+  }
+  
+  .dropdownItem:hover {
+    background-color: rgba(158, 186, 155, 0.1);
+    color: #9EBA9B;
+    padding-left: 1.2rem;
+  }
+  
+  .dropdownItem::before {
+    content: "•";
+    position: absolute;
+    left: 10px;
+    color: #D2B48C;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  
+  .dropdownItem:hover::before {
+    opacity: 1;
+  }
+  
+  .chatIcon {
+    margin-right: 5px;
+    color: #D9A5A0;
+  }
+  
+  .navLinkLogout {
+    display: inline-block;
+    margin: 0 0.7rem;
+    padding: 0.4rem 0.8rem;
+    color: #D9A5A0 !important;
+    text-decoration: none;
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    font-weight: 500;
+    position: relative;
+    transition: all 0.3s;
+    border: 1px solid #D9A5A0;
+    border-radius: 3px;
+  }

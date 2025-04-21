@@ -1,0 +1,200 @@
+.loginContainer {
+  min-height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F4F1ED;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.loginContainer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/img/texture-bg.png');
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+.loginForm {
+  max-width: 450px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid rgba(210, 180, 140, 0.3);
+  padding: 2.5rem 2rem;
+  position: relative;
+  z-index: 1;
+  transform: rotate(-0.5deg);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.loginForm:hover {
+  transform: translateY(-5px) rotate(0deg);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.loginHeader {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.logoContainer {
+  margin-bottom: 1.5rem;
+}
+
+.loginLogo {
+  width: 80px;
+  height: auto;
+  animation: slight-wobble 8s ease-in-out infinite;
+}
+
+@keyframes slight-wobble {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(2deg); }
+}
+
+.loginTitle {
+  font-family: 'Metropolis', 'Playfair Display', serif;
+  color: #3E3E3E;
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.loginSubtitle {
+  font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+  color: #D9A5A0;
+  font-style: italic;
+  font-size: 1.1rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formLabel {
+  display: block;
+  font-family: 'Metropolis', 'Playfair Display', serif;
+  color: #3E3E3E;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  letter-spacing: 0.5px;
+}
+
+.formInput {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 1px solid #D2B48C;
+  background-color: rgba(244, 241, 237, 0.5);
+  font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+  color: #3E3E3E;
+  transition: all 0.3s;
+}
+
+.formInput:focus {
+  outline: none;
+  border-color: #9EBA9B;
+  background-color: rgba(158, 186, 155, 0.05);
+}
+
+.formInput::placeholder {
+  color: rgba(62, 62, 62, 0.5);
+  font-style: italic;
+}
+
+.loginButton {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #9EBA9B;
+  border: none;
+  color: #3E3E3E;
+  font-family: 'Metropolis', 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.loginButton:hover {
+  background-color: #D2B48C;
+  transform: translateY(-3px);
+}
+
+.loginButton:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.loadingSpinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #3E3E3E;
+  animation: spin 1s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.loginFooter {
+  text-align: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed rgba(210, 180, 140, 0.5);
+  margin-bottom: 1.5rem;
+}
+
+.forgotLink {
+  display: block;
+  margin-bottom: 1rem;
+  font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+  color: #3E3E3E;
+  font-size: 0.9rem;
+  font-style: italic;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.forgotLink:hover {
+  color: #D9A5A0;
+}
+
+.registerPrompt {
+  font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+  color: #3E3E3E;
+}
+
+.registerLink {
+  color: #9EBA9B;
+  font-weight: 600;
+  margin-left: 0.5rem;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.registerLink:hover {
+  color: #D2B48C;
+  text-decoration: underline;
+}
+
+.loginNote {
+  text-align: center;
+}
+
+.loginNote p {
+  font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+  color: #3E3E3E;
+  font-size: 0.8rem;
+  font-style: italic;
+  opacity: 0.7;
+  margin: 0;
+}

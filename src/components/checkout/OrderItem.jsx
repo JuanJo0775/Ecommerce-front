@@ -1,24 +1,48 @@
-import React from 'react'
+import React from 'react';
 import { BASE_URL } from '../../api';
+import styles from './OrderItem.module.css';
 
 const OrderItem = ({cartitem}) => {
+    // Función para determinar el texto de la categoría
+    const getCategoryText = (category) => {
+        switch(category) {
+            case "ropa-fea":
+                return "Ropa Fea";
+            case "ceramica-feista":
+                return "Arte Raro";
+            case "decoracion-glitch":
+                return "Glitch-Deco";
+            case "accesorios":
+                return "Mal Gusto";
+            default:
+                return "Incorrecta";
+        }
+    };
+
     return (
-        <div className="d-flex justify-content-between align-items-center mb-3" style={{ padding: '10px' }}>
-            <div className="d-flex align-items-center">
+        <div className={styles.orderItem}>
+            <div className={styles.itemImage}>
                 <img
                     src={`${BASE_URL}${cartitem.product.image}`}
-                    alt="Product"
-                    className="img-fluid"
-                    style={{ width: '60px', height: '60px', objectFit: 'cover', borderRadius: '5px' }}
+                    alt={cartitem.product.name}
                 />
-                <div className="ms-3">
-                    <h6 className="mb-0">{cartitem.product.name}</h6>
-                    <small>{`Cantidad: ${cartitem.quantity}`}</small>
+                <div className={styles.itemTag}>
+                    {getCategoryText(cartitem.product.category)}
                 </div>
             </div>
-            <h6>{`$${cartitem.product.price}`}</h6>
+            <div className={styles.itemDetails}>
+                <h5 className={styles.itemName}>{cartitem.product.name}</h5>
+                <div className={styles.itemMeta}>
+                    <span className={styles.itemQuantity}>Cantidad: {cartitem.quantity}</span>
+                    <span className={styles.itemPrice}>${cartitem.product.price}</span>
+                </div>
+                <div className={styles.itemTotal}>
+                    <span>Subtotal: </span>
+                    <span className={styles.totalPrice}>${(cartitem.product.price * cartitem.quantity).toFixed(2)}</span>
+                </div>
+            </div>
         </div>
     );
 };
 
-export default OrderItem
+export default OrderItem;

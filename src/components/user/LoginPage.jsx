@@ -4,18 +4,20 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import "./LoginPage.css"
 import api from '../../api';
 import { AuthContext } from '../context/AuthContext';
+import styles from './LoginPage.module.css';
+import pic from '../../assets/incorrect-frog.png';
 
 const LoginPage = () => {
-    const {setIsAuthenticated, get_username} = useContext(AuthContext)
+    const {setIsAuthenticated, get_username} = useContext(AuthContext);
 
-    const location = useLocation()
-    const navigate = useNavigate()
-    const [username, setUsername] = useState("")
-    const [password, setPassword] = useState("")
-    const [loading, setLoading] = useState(false)
-    const [error, setError] = useState("")
+    const location = useLocation();
+    const navigate = useNavigate();
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState("");
 
-    const userInfo = {username, password}
+    const userInfo = {username, password};
    
     // Función para asociar el carrito al usuario después del inicio de sesión
     const associateCartToUser = (cartCode) => {
@@ -33,19 +35,19 @@ const LoginPage = () => {
 
     function handleSubmit(e) {
         e.preventDefault();
-        setLoading(true)
+        setLoading(true);
       
         api.post("token/", userInfo)
           .then(res => {
             console.log(res.data);
-            localStorage.setItem("access", res.data.access)
-            localStorage.setItem("refresh", res.data.refresh)
-            setUsername("")
-            setPassword("")
-            setLoading(false)
-            setIsAuthenticated(true)
-            get_username()
-            setError("")
+            localStorage.setItem("access", res.data.access);
+            localStorage.setItem("refresh", res.data.refresh);
+            setUsername("");
+            setPassword("");
+            setLoading(false);
+            setIsAuthenticated(true);
+            get_username();
+            setError("");
 
             // Verificar si hay un carrito en localStorage
             const cartCode = localStorage.getItem("cart_code");
@@ -63,41 +65,81 @@ const LoginPage = () => {
           })
           .catch(err => {
             console.log(err.message);
-            setError(err.message)
-            setLoading(false)
+            setError("Credenciales incorrectas (pero en el mal sentido)");
+            setLoading(false);
           });
     }
 
     return (
-        <div className="login-container my-5">
-            <div className="login-card shadow">
+        <div className={styles.loginContainer}>
+            <div className={styles.loginForm}>
                 {error && <Error error={error}/>}
-                <h2 className="login-title">Bienvenido</h2>
-                <p className="login-subtitle">Inicie sesión por favor</p>
+                <div className={styles.loginHeader}>
+                    <div className={styles.logoContainer}>
+                        <img src={pic} alt="La Tienda Incorrecta" className={styles.loginLogo} />
+                    </div>
+                    <h2 className={styles.loginTitle}>Bienvenido de vuelta</h2>
+                    <p className={styles.loginSubtitle}>Inicia sesión para continuar tu experiencia incorrecta</p>
+                </div>
+                
                 <form onSubmit={handleSubmit}>
-                    <div className="mb-3">
-                        <label htmlFor="username" className="form-label">Usuario</label>
-                        <input type="username" value={username} 
-                        onChange={(e) => setUsername(e.target.value)}
-                        className="form-control" id="email" placeholder="Introduce tu usuario" required />
+                    <div className={styles.formGroup}>
+                        <label htmlFor="username" className={styles.formLabel}>Usuario</label>
+                        <input 
+                            type="text" 
+                            value={username} 
+                            onChange={(e) => setUsername(e.target.value)}
+                            className={styles.formInput} 
+                            id="username" 
+                            placeholder="Tu nombre de usuario" 
+                            required 
+                        />
                     </div>
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Contraseña</label>
-                        <input type="password" value={password} 
-                        onChange={(e) => setPassword(e.target.value)}
-                        className="form-control" id="password" placeholder="Introduce tu contraseña" required />
+                    
+                    <div className={styles.formGroup}>
+                        <label htmlFor="password" className={styles.formLabel}>Contraseña</label>
+                        <input 
+                            type="password" 
+                            value={password} 
+                            onChange={(e) => setPassword(e.target.value)}
+                            className={styles.formInput} 
+                            id="password" 
+                            placeholder="Tu contraseña incorrectamente segura" 
+                            required 
+                        />
                     </div>
-                    <button type="submit" className="btn btn-primary w-100" disabled={loading}>
-                        {loading ? "Procesando..." : "Iniciar sesión"}
+                    
+                    <button 
+                        type="submit" 
+                        className={styles.loginButton} 
+                        disabled={loading}
+                    >
+                        {loading ? (
+                            <span className={styles.loadingSpinner}></span>
+                        ) : (
+                            "Ingresar a lo incorrecto"
+                        )}
                     </button>
                 </form>
-                <div className="login-footer">
-                    <p><a href="#">¿Olvidó su contraseña?</a></p>
-                    <p>¿No tienes cuenta? <Link to="/register">Regístrate</Link></p>
+                
+                <div className={styles.loginFooter}>
+                    <Link to="/forgotpassword" className={styles.forgotLink}>
+                        ¿Olvidaste tu contraseña incorrectamente?
+                    </Link>
+                    <div className={styles.registerPrompt}>
+                        <span>¿No tienes cuenta?</span>
+                        <Link to="/register" className={styles.registerLink}>
+                            Regístrate aquí
+                        </Link>
+                    </div>
+                </div>
+                
+                <div className={styles.loginNote}>
+                    <p>Nota: Al iniciar sesión, aceptas nuestros Términos y Condiciones deliberadamente mal redactados.</p>
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default LoginPage
+export default LoginPage;

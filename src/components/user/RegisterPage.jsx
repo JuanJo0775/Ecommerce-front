@@ -1,9 +1,10 @@
 import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import api from '../../api';
 import Error from '../ui/Error';
 import { AuthContext } from '../context/AuthContext';
-import './LoginPage.css'; // Reutilizamos los estilos del login
+import styles from './RegisterPage.module.css';
+import pic from '../../assets/incorrect-frog.png';
 
 const RegisterPage = () => {
     const navigate = useNavigate();
@@ -39,7 +40,7 @@ const RegisterPage = () => {
 
         // Validación básica
         if (formData.password !== formData.password2) {
-            setError('Las contraseñas no coinciden');
+            setError('Las contraseñas no coinciden (y no de manera artística)');
             setLoading(false);
             return;
         }
@@ -71,7 +72,7 @@ const RegisterPage = () => {
             })
             .catch(err => {
                 console.error('Error:', err);
-                let errorMsg = 'Error al registrar usuario';
+                let errorMsg = 'Error al registrar usuario (y no es parte de nuestra estética incorrecta)';
                 
                 // Manejar errores específicos del backend
                 if (err.response && err.response.data) {
@@ -97,19 +98,25 @@ const RegisterPage = () => {
     };
 
     return (
-        <div className="login-container my-5">
-            <div className="login-card shadow">
+        <div className={styles.registerContainer}>
+            <div className={styles.registerForm}>
                 {error && <Error error={error} />}
-                <h2 className="login-title">Crear cuenta</h2>
-                <p className="login-subtitle">Complete el formulario para registrarse</p>
+                
+                <div className={styles.registerHeader}>
+                    <div className={styles.logoContainer}>
+                        <img src={pic} alt="La Tienda Incorrecta" className={styles.registerLogo} />
+                    </div>
+                    <h2 className={styles.registerTitle}>Únete a La Incorrección</h2>
+                    <p className={styles.registerSubtitle}>Crea una cuenta para acceder a nuestro universo de imperfecciones deliberadas</p>
+                </div>
                 
                 <form onSubmit={handleSubmit}>
-                    <div className="row">
-                        <div className="col-md-6 mb-3">
-                            <label htmlFor="first_name" className="form-label">Nombre</label>
+                    <div className={styles.formRow}>
+                        <div className={styles.formGroup}>
+                            <label htmlFor="first_name" className={styles.formLabel}>Nombre</label>
                             <input 
                                 type="text" 
-                                className="form-control" 
+                                className={styles.formInput} 
                                 id="first_name" 
                                 name="first_name"
                                 value={formData.first_name}
@@ -117,11 +124,11 @@ const RegisterPage = () => {
                                 placeholder="Tu nombre" 
                             />
                         </div>
-                        <div className="col-md-6 mb-3">
-                            <label htmlFor="last_name" className="form-label">Apellido</label>
+                        <div className={styles.formGroup}>
+                            <label htmlFor="last_name" className={styles.formLabel}>Apellido</label>
                             <input 
                                 type="text" 
-                                className="form-control" 
+                                className={styles.formInput} 
                                 id="last_name" 
                                 name="last_name"
                                 value={formData.last_name}
@@ -131,25 +138,25 @@ const RegisterPage = () => {
                         </div>
                     </div>
                     
-                    <div className="mb-3">
-                        <label htmlFor="username" className="form-label">Nombre de usuario</label>
+                    <div className={styles.formGroup}>
+                        <label htmlFor="username" className={styles.formLabel}>Nombre de usuario</label>
                         <input 
                             type="text" 
-                            className="form-control" 
+                            className={styles.formInput} 
                             id="username" 
                             name="username"
                             value={formData.username}
                             onChange={handleChange}
-                            placeholder="Elije un nombre de usuario" 
+                            placeholder="Elige un nombre único (o incorrectamente común)" 
                             required 
                         />
                     </div>
                     
-                    <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Correo electrónico</label>
+                    <div className={styles.formGroup}>
+                        <label htmlFor="email" className={styles.formLabel}>Correo electrónico</label>
                         <input 
                             type="email" 
-                            className="form-control" 
+                            className={styles.formInput} 
                             id="email" 
                             name="email"
                             value={formData.email}
@@ -159,46 +166,57 @@ const RegisterPage = () => {
                         />
                     </div>
                     
-                    <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Contraseña</label>
+                    <div className={styles.formGroup}>
+                        <label htmlFor="password" className={styles.formLabel}>Contraseña</label>
                         <input 
                             type="password" 
-                            className="form-control" 
+                            className={styles.formInput} 
                             id="password" 
                             name="password"
                             value={formData.password}
                             onChange={handleChange}
-                            placeholder="Crea una contraseña" 
+                            placeholder="Mínimo 8 caracteres, deliberadamente complicada" 
                             required 
                         />
                     </div>
                     
-                    <div className="mb-3">
-                        <label htmlFor="password2" className="form-label">Confirmar contraseña</label>
+                    <div className={styles.formGroup}>
+                        <label htmlFor="password2" className={styles.formLabel}>Confirmar contraseña</label>
                         <input 
                             type="password" 
-                            className="form-control" 
+                            className={styles.formInput} 
                             id="password2" 
                             name="password2"
                             value={formData.password2}
                             onChange={handleChange}
-                            placeholder="Repite la contraseña" 
+                            placeholder="Repite la misma contraseña" 
                             required 
                         />
                     </div>
                     
                     <button 
                         type="submit" 
-                        className="btn btn-primary w-100" 
+                        className={styles.registerButton} 
                         disabled={loading}
-                        style={{ backgroundColor: '#6050DC', borderColor: '#6050DC' }}
                     >
-                        {loading ? "Procesando..." : "Registrarse"}
+                        {loading ? (
+                            <span className={styles.loadingSpinner}></span>
+                        ) : (
+                            "Unirme a la incorrección"
+                        )}
                     </button>
                 </form>
                 
-                <div className="login-footer">
-                    <p>¿Ya tienes cuenta? <a href="/login">Iniciar sesión</a></p>
+                <div className={styles.registerFooter}>
+                    <p>
+                        Al registrarte, aceptas nuestros <a href="#" className={styles.termsLink}>Términos Deliberadamente Confusos</a> y nuestra <a href="#" className={styles.termsLink}>Política de Privacidad Artísticamente Ambigua</a>.
+                    </p>
+                    <div className={styles.loginPrompt}>
+                        <span>¿Ya tienes cuenta?</span>
+                        <Link to="/login" className={styles.loginLink}>
+                            Inicia sesión aquí
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

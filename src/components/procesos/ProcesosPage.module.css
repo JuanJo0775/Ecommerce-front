@@ -1,0 +1,289 @@
+.procesosContainer {
+    background-color: #F4F1ED;
+    min-height: 80vh;
+    position: relative;
+  }
+  
+  .procesosContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/texture-bg.png');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  
+  .pageHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  
+  .pageTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    text-transform: uppercase;
+  }
+  
+  .pageSubtitle {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #D9A5A0;
+    font-size: 1.2rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  
+  .decorativeLine {
+    width: 120px;
+    height: 3px;
+    background-color: #D2B48C;
+    margin: 0 auto;
+    transform: skewX(-15deg);
+  }
+  
+  .procesosIntro {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    padding: 0 1rem;
+  }
+  
+  .procesosIntro p {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    font-size: 1.2rem;
+    line-height: 1.7;
+    color: #3E3E3E;
+  }
+  
+  .procesosGrid {
+    max-width: 1000px;
+    margin: 0 auto 4rem;
+  }
+  
+  .procesoCard {
+    display: flex;
+    margin-bottom: 3rem;
+    position: relative;
+  }
+  
+  .procesoNumber {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-size: 5rem;
+    line-height: 1;
+    color: rgba(158, 186, 155, 0.3);
+    margin-right: 1.5rem;
+    flex-shrink: 0;
+    width: 80px;
+    text-align: center;
+  }
+  
+  .procesoContent {
+    flex: 1;
+    background-color: white;
+    padding: 2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transform: rotate(-0.5deg);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .procesoCard:nth-child(even) .procesoContent {
+    transform: rotate(0.5deg);
+  }
+  
+  .procesoCard:hover .procesoContent {
+    transform: translateY(-5px) rotate(0deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .procesoTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .procesoTitle::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #D9A5A0;
+    transform: skewX(-15deg);
+  }
+  
+  .procesoDesc {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #3E3E3E;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+  
+  .procesoImagePlaceholder {
+    width: 100%;
+    height: 200px;
+    background-color: rgba(210, 180, 140, 0.1);
+    border: 1px dashed #D2B48C;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+  
+  .procesoImagePlaceholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s;
+  }
+  
+  .procesoCard:hover .procesoImagePlaceholder img {
+    transform: scale(1.05);
+  }
+  
+  .workshopSection {
+    max-width: 800px;
+    margin: 0 auto 4rem;
+    background-color: #3E3E3E;
+    padding: 3rem 2rem;
+    color: #F4F1ED;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .workshopTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .workshopTitle::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #9EBA9B;
+  }
+  
+  .workshopDesc {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .workshopDetails {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+  }
+  
+  .workshopDetail {
+    flex: 1;
+    min-width: 200px;
+    background-color: rgba(217, 165, 160, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    border: 1px solid rgba(217, 165, 160, 0.3);
+  }
+  
+  .workshopDetail h4 {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #D9A5A0;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .workshopDetail p {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .ctaSection {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: rgba(158, 186, 155, 0.1);
+    border: 1px dashed #9EBA9B;
+  }
+  
+  .ctaTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .ctaDesc {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #3E3E3E;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .ctaButton {
+    display: inline-block;
+    background-color: #D2B48C;
+    color: #3E3E3E;
+    padding: 0.8rem 2rem;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: none;
+  }
+  
+  .ctaButton:hover {
+    background-color: #9EBA9B;
+    transform: translateY(-3px);
+    color: #3E3E3E;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  @media (max-width: 768px) {
+    .procesoCard {
+      flex-direction: column;
+    }
+    
+    .procesoNumber {
+      font-size: 4rem;
+      width: 100%;
+      text-align: left;
+      margin-bottom: 1rem;
+      margin-right: 0;
+    }
+    
+    .workshopDetails {
+      flex-direction: column;
+    }
+    
+    .pageTitle {
+      font-size: 2rem;
+    }
+  }

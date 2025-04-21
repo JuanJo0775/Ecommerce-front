@@ -1,20 +1,225 @@
-.paypalButton, .flutterwaveButton, .epaycoButton {
-  font-size: 1.1rem;
+.paymentCard {
+  background-color: white;
+  border: 1px solid rgba(210, 180, 140, 0.3);
+  margin-bottom: 2rem;
+  transform: rotate(0.5deg);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.paymentCard:hover {
+  transform: translateY(-5px) rotate(0deg);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.paymentHeader {
+  padding: 1.5rem;
+  background-color: #3E3E3E;
+  position: relative;
+}
+
+.paymentHeader::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background: linear-gradient(to right, #D2B48C, #9EBA9B, #D9A5A0);
+  transform: skewY(-0.5deg) translateY(50%);
+}
+
+.paymentTitle {
+  font-family: 'Metropolis', 'Playfair Display', serif;
+  color: #F4F1ED;
+  font-size: 1.3rem;
+  letter-spacing: 1px;
+  margin: 0;
+  text-align: center;
+}
+
+.paymentBody {
+  padding: 2rem 1.5rem;
+}
+
+.warningMessage, .errorMessage {
+  margin-bottom: 1.5rem;
+  padding: 1rem;
+  border: 1px dashed;
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+}
+
+.warningMessage {
+  border-color: #D2B48C;
+  background-color: rgba(210, 180, 140, 0.1);
+  color: #3E3E3E;
+}
+
+.errorMessage {
+  border-color: #D9A5A0;
+  background-color: rgba(217, 165, 160, 0.1);
+  color: #3E3E3E;
+}
+
+.paymentIntro {
+  font-family: 'Cormorant Garamond', serif;
+  color: #3E3E3E;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.paymentMethods {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.paymentButton {
+  padding: 1rem;
+  background-color: #F4F1ED;
+  border: 1px solid #D2B48C;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.paymentButton:hover:not(:disabled) {
+  background-color: rgba(158, 186, 155, 0.1);
+  transform: translateY(-3px);
+}
+
+.paymentButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.buttonContent {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.paymentIcon {
+  font-size: 1.5rem;
+  color: #3E3E3E;
+}
+
+.buttonText {
+  font-family: 'Metropolis', 'Playfair Display', serif;
+  color: #3E3E3E;
   font-weight: 600;
+  font-size: 1rem;
 }
 
+.divider {
+  position: relative;
+  text-align: center;
+  height: 20px;
+}
 
-.epaycoButton {
-  background-color: #f89500;
+.divider::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: rgba(210, 180, 140, 0.5);
+}
+
+.divider span {
+  position: relative;
+  background-color: white;
+  padding: 0 10px;
+  font-family: 'Cormorant Garamond', serif;
+  color: #3E3E3E;
+  font-style: italic;
+}
+
+.securityInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px dashed rgba(210, 180, 140, 0.5);
+  gap: 10px;
+}
+
+.lockIcon {
+  color: #9EBA9B;
+  font-size: 1.2rem;
+}
+
+.securityText {
+  font-family: 'Cormorant Garamond', serif;
+  color: #3E3E3E;
+  font-size: 0.9rem;
+  margin: 0;
+  font-style: italic;
+}
+
+.loginPrompt {
+  padding: 1.5rem;
+  background-color: rgba(217, 165, 160, 0.1);
+  text-align: center;
+  border-top: 1px dashed rgba(210, 180, 140, 0.5);
+}
+
+.loginPrompt p {
+  font-family: 'Cormorant Garamond', serif;
+  color: #3E3E3E;
+  margin-bottom: 1rem;
+}
+
+.loginButton {
+  display: inline-block;
+  background-color: #D9A5A0;
+  color: #3E3E3E;
   border: none;
-  color: white;
+  padding: 0.5rem 1.5rem;
+  font-family: 'Metropolis', 'Playfair Display', serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
 }
 
-.paypalButton:hover, .flutterwaveButton:hover, .epaycoButton:hover {
-  opacity: 0.9;
+.loginButton:hover {
+  background-color: #D2B48C;
+  transform: translateY(-2px);
 }
 
-.card {
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.paymentNote {
+  padding: 1.5rem;
+  background-color: rgba(158, 186, 155, 0.1);
+  border: 1px dashed #9EBA9B;
+}
+
+.noteTitle {
+  font-family: 'Metropolis', 'Playfair Display', serif;
+  color: #3E3E3E;
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.noteTitle::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #D9A5A0;
+  transform: skewX(-10deg);
+}
+
+.noteText {
+  font-family: 'Cormorant Garamond', serif;
+  color: #3E3E3E;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
 }

@@ -1,46 +1,64 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import styles from './UserInfo.module.css';
-import pic from '../../assets/default_profile.png';
 
 const UserInfo = ({ userInfo }) => {
     return (
-        <div className="row mb-4">
-            <div className={`col-md-3 py-3 card ${styles.textCenter}`}>
-                <img
-                    src={pic}
-                    alt="User Profile"
-                    className={`img-fluid rounded-circle mb-3 mx-auto ${styles.profileImage}`}
-                />
-                <h4>{userInfo.first_name} {userInfo.last_name}</h4>
-                <p className="text-muted">{userInfo.email}</p>
-                <div className="d-grid gap-2">
-                    <Link to="/profile/edit" className="btn" style={{ backgroundColor: '#6050DC', color: 'white' }}>
-                        Editar perfil
-                    </Link>
-                    <Link to="/profile/change-password" className="btn btn-outline-secondary">
-                        Cambiar contraseña
-                    </Link>
+        <div className={styles.userInfoContainer}>
+            <div className={styles.userProfile}>
+                <div className={styles.profileImageContainer}>
+                    <img
+                        src="/img/default_profile.png"
+                        alt="Perfil de usuario"
+                        className={styles.profileImage}
+                    />
+                    <div className={styles.imageOverlay}>
+                        <span>Foto deliberadamente imperfecta</span>
+                    </div>
+                </div>
+                <div className={styles.profileNameContainer}>
+                    <h2 className={styles.profileName}>{userInfo.first_name} {userInfo.last_name}</h2>
+                    <span className={styles.membershipType}>Miembro Incorrectamente Distinguido</span>
                 </div>
             </div>
-            <div className="col-md-9">
-                <div className="card mb-4">
-                    <div className="card-header" style={{ backgroundColor: '#6050DC', color: 'white' }}>
-                        <h5 className="mb-0">Datos</h5>
-                    </div>
-                    <div className="card-body">
-                        <div className="row">
-                            <div className="col-md-6">
-                                <p><strong>Nombre:</strong> {userInfo.first_name || 'No especificado'} {userInfo.last_name || ''}</p>
-                                <p><strong>Email:</strong> {userInfo.email || 'No especificado'}</p>
-                                <p><strong>Teléfono:</strong> {userInfo.phone || 'No especificado'}</p>
-                            </div>
-                            <div className="col-md-6">
-                                <p><strong>Usuario:</strong> {userInfo.username || 'No especificado'}</p>
-                                <p><strong>Ciudad:</strong> {userInfo.city || 'No especificada'}</p>
-                                <p><strong>Dirección:</strong> {userInfo.address || 'No especificada'}</p>
-                            </div>
-                        </div>
+            
+            <div className={styles.userInfoGrid}>
+                <div className={styles.infoItem}>
+                    <div className={styles.infoLabel}>Nombre de usuario</div>
+                    <div className={styles.infoValue}>{userInfo.username || 'No especificado'}</div>
+                </div>
+                
+                <div className={styles.infoItem}>
+                    <div className={styles.infoLabel}>Correo electrónico</div>
+                    <div className={styles.infoValue}>{userInfo.email || 'No especificado'}</div>
+                </div>
+                
+                <div className={styles.infoItem}>
+                    <div className={styles.infoLabel}>Teléfono</div>
+                    <div className={styles.infoValue}>{userInfo.phone || 'No proporcionado'}</div>
+                </div>
+                
+                <div className={styles.infoItem}>
+                    <div className={styles.infoLabel}>Ciudad</div>
+                    <div className={styles.infoValue}>{userInfo.city || 'No especificada'}</div>
+                </div>
+                
+                <div className={styles.infoItem}>
+                    <div className={styles.infoLabel}>Estado/Provincia</div>
+                    <div className={styles.infoValue}>{userInfo.state || 'No especificado'}</div>
+                </div>
+                
+                <div className={styles.infoItem}>
+                    <div className={styles.infoLabel}>Dirección</div>
+                    <div className={styles.infoValue}>{userInfo.address || 'No especificada'}</div>
+                </div>
+            </div>
+            
+            <div className={styles.incorrectBadge}>
+                <div className={styles.badgeContent}>
+                    <img src="/img/incorrect-frog-small.svg" alt="Insignia" className={styles.badgeIcon} />
+                    <div className={styles.badgeTextContainer}>
+                        <div className={styles.badgeTitle}>Cliente Imperfecto Nivel 1</div>
+                        <div className={styles.badgeDesc}>Has adquirido al menos una pieza incorrecta</div>
                     </div>
                 </div>
             </div>

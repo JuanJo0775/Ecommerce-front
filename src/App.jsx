@@ -6,17 +6,21 @@ import ProductPage from "./components/product/ProductPage";
 import CartPage from "./components/cart/CartPage";
 import { useState, useEffect } from "react";
 import LoginPage from "./components/user/LoginPage"; 
-import RegisterPage from "./components/user/RegisterPage"; // Nueva página de registro
+import RegisterPage from "./components/user/RegisterPage";
 import api from "./api";
 import CheckoutPage from "./components/checkout/CheckoutPage";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
 import { AuthProvider } from "./components/context/AuthContext";
 import UserProfilePage from "./components/user/UserProfilePage";
-import EditProfilePage from "./components/user/EditProfilePage"; // Nueva página de edición de perfil
-import ChangePasswordPage from "./components/user/ChangePasswordPage"; // Nueva página de cambio de contraseña
+import EditProfilePage from "./components/user/EditProfilePage";
+import ChangePasswordPage from "./components/user/ChangePasswordPage";
 import PaymentStatusPage from "./components/payments/PaymentsStatusPage";
 import ChatbotPage from "./components/chatbot/ChatbotPage";
+import ManifiestoPage from "./components/manifesto/ManifiestoPage";
+import ProcesosPage from "./components/procesos/ProcesosPage";
 
+// Importamos las páginas de categorías
+import CategoryPage from "./components/category/CategoryPage";
 
 const App = () => {
   const [numCartItems, setNumberCartItems] = useState(0);
@@ -37,44 +41,55 @@ const App = () => {
 
   return (
     <AuthProvider>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainLayout numCartItems={numCartItems} />}>
-          <Route index element={<HomePage />} />
-          <Route path="products/:slug" element={<ProductPage setNumberCartItems={setNumberCartItems} />} />
-          <Route path="cart" element={<CartPage setNumberCartItems={setNumberCartItems} />} />
-          <Route path="checkout" element={
-            <ProtectedRoute>
-              <CheckoutPage />
-            </ProtectedRoute>
-          } />
-          <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} /> {/* Ruta para registro */}
-          <Route path="profile" element={
-            <ProtectedRoute>
-              <UserProfilePage />
-            </ProtectedRoute>
-          } />
-          <Route path="profile/edit" element={
-            <ProtectedRoute>
-              <EditProfilePage />
-            </ProtectedRoute>
-          } />
-          <Route path="profile/change-password" element={
-            <ProtectedRoute>
-              <ChangePasswordPage />
-            </ProtectedRoute>
-          } />
-          <Route path="payment-status" element={<PaymentStatusPage setNumberCartItems={setNumberCartItems} />} />
-          <Route path="*" element={<NotFoundPage />} />
-          <Route path="chat" element={
-            <ProtectedRoute>
-              <ChatbotPage />
-            </ProtectedRoute>
-          } />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<MainLayout numCartItems={numCartItems} />}>
+            <Route index element={<HomePage />} />
+            <Route path="products/:slug" element={<ProductPage setNumberCartItems={setNumberCartItems} />} />
+            <Route path="cart" element={<CartPage setNumberCartItems={setNumberCartItems} />} />
+            <Route path="checkout" element={
+              <ProtectedRoute>
+                <CheckoutPage />
+              </ProtectedRoute>
+            } />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="profile" element={
+              <ProtectedRoute>
+                <UserProfilePage />
+              </ProtectedRoute>
+            } />
+            <Route path="profile/edit" element={
+              <ProtectedRoute>
+                <EditProfilePage />
+              </ProtectedRoute>
+            } />
+            <Route path="profile/change-password" element={
+              <ProtectedRoute>
+                <ChangePasswordPage />
+              </ProtectedRoute>
+            } />
+            <Route path="payment-status" element={<PaymentStatusPage setNumberCartItems={setNumberCartItems} />} />
+            <Route path="chat" element={
+              <ProtectedRoute>
+                <ChatbotPage />
+              </ProtectedRoute>
+            } />
+            
+            {/* Nuevas rutas para La Tienda Incorrecta */}
+            <Route path="manifiesto" element={<ManifiestoPage />} />
+            <Route path="procesos" element={<ProcesosPage />} />
+            
+            {/* Rutas de categorías */}
+            <Route path="categoria/ropa-fea" element={<CategoryPage category="ropa-fea" title="Ropa Fea con Intención" />} />
+            <Route path="categoria/ceramica-feista" element={<CategoryPage category="ceramica-feista" title="Arte Raro y Cerámica Feísta" />} />
+            <Route path="categoria/decoracion-glitch" element={<CategoryPage category="decoracion-glitch" title="Decoración Glitch-Artesanal" />} />
+            <Route path="categoria/accesorios" element={<CategoryPage category="accesorios" title="Accesorios de Mal Gusto Elegante" />} />
+            
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </AuthProvider>
   );
 };

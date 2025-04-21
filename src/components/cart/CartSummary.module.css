@@ -1,8 +1,10 @@
 .summaryCard {
     background-color: white;
     border: 1px solid rgba(210, 180, 140, 0.3);
-    margin-bottom: 2rem;
-    transform: rotate(-0.5deg);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    transform: rotate(0.5deg);
     transition: transform 0.3s, box-shadow 0.3s;
   }
   
@@ -38,18 +40,8 @@
   }
   
   .summaryBody {
-    padding: 0;
-  }
-  
-  .itemsContainer {
-    max-height: 300px;
-    overflow-y: auto;
-    padding: 1.5rem;
+    padding: 2rem 1.5rem;
     border-bottom: 1px dashed rgba(210, 180, 140, 0.5);
-  }
-  
-  .summaryTotals {
-    padding: 1.5rem;
   }
   
   .summaryRow {
@@ -89,69 +81,78 @@
     font-weight: 700;
   }
   
-  .certificateSection {
+  .summaryFooter {
     padding: 1.5rem;
-    background-color: rgba(217, 165, 160, 0.1);
   }
   
-  .certificateBox {
-    border: 1px dashed #D9A5A0;
-    padding: 1.5rem;
-    position: relative;
-    background-color: #fff;
-  }
-  
-  .certificateHeader {
-    display: flex;
-    align-items: center;
-    margin-bottom: 1rem;
-  }
-  
-  .certificateLogo {
-    width: 40px;
-    height: auto;
-    margin-right: 1rem;
-  }
-  
-  .certificateTitle {
-    font-family: 'Metropolis', 'Playfair Display', serif;
+  .checkoutButton {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background-color: #D2B48C;
     color: #3E3E3E;
-    font-size: 1.1rem;
-    margin: 0;
-    letter-spacing: 1px;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: 1px solid transparent;
+    letter-spacing: 0.5px;
   }
   
-  .certificateText {
+  .checkoutButton:hover {
+    background-color: #9EBA9B;
+    transform: translateY(-3px);
+    color: #3E3E3E;
+  }
+  
+  .secureInfo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1.5rem;
+  }
+  
+  .secureText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #3E3E3E;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.9rem;
+  }
+  
+  .secureSubtext {
+    font-style: italic;
+    color: #D9A5A0;
+    font-size: 0.8rem;
+    margin-top: 0.3rem;
+  }
+  
+  .guaranteeBox {
+    padding: 1.5rem;
+    background-color: rgba(158, 186, 155, 0.1);
+    margin-top: auto;
+    border-top: 1px dashed rgba(210, 180, 140, 0.5);
+    text-align: center;
+  }
+  
+  .guaranteeText {
+    display: block;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #9EBA9B;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .guaranteeMessage {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     color: #3E3E3E;
-    margin-bottom: 1.5rem;
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-  
-  .certificateStamp {
-    display: inline-block;
-    background-color: #9EBA9B;
-    color: #3E3E3E;
-    padding: 0.5rem 1rem;
-    font-family: 'Metropolis', 'Playfair Display', serif;
-    font-size: 0.9rem;
-    transform: rotate(-3deg);
-    position: relative;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    border: 1px solid #3E3E3E;
-  }
-  
-  .certificateStamp::before {
-    content: "";
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    right: 5px;
-    bottom: 5px;
-    border: 1px dashed rgba(62, 62, 62, 0.5);
-    pointer-events: none;
+    font-size: 0.85rem;
+    margin: 0;
   }

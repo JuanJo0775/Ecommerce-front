@@ -1,0 +1,219 @@
+.categoryContainer {
+    background-color: #F4F1ED;
+    min-height: 80vh;
+    position: relative;
+  }
+  
+  .categoryContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/texture-bg.png');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  
+  .categoryBanner {
+    height: 300px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .bannerOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(62, 62, 62, 0.5), rgba(62, 62, 62, 0.8));
+    display: flex;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .categoryTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #F4F1ED;
+    font-size: 2.5rem;
+    letter-spacing: 2px;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .categoryTitle::after {
+    content: "";
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100px;
+    height: 3px;
+    background-color: #D2B48C;
+  }
+  
+  .categoryDescription {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #F4F1ED;
+    font-size: 1.1rem;
+    max-width: 800px;
+    margin: 0 auto;
+    font-style: italic;
+    line-height: 1.7;
+  }
+  
+  .spinnerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 300px;
+  }
+  
+  .categoryIntro {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .introTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .decorativeLine {
+    width: 100px;
+    height: 3px;
+    background-color: #D2B48C;
+    margin: 0 auto 1.5rem;
+    transform: skewX(-15deg);
+  }
+  
+  .introText {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #3E3E3E;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+  
+  .filtersSection {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .filterChips {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .filterChip {
+    font-family: 'Cormorant Garamond', serif;
+    padding: 0.4rem 1rem;
+    border: 1px solid #D2B48C;
+    color: #3E3E3E;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: transparent;
+  }
+  
+  .filterChip:hover, .filterChip.active {
+    background-color: #D2B48C;
+    transform: translateY(-2px);
+  }
+  
+  .sortDropdown {
+    position: relative;
+  }
+  
+  .sortSelect {
+    font-family: 'Cormorant Garamond', serif;
+    padding: 0.4rem 1rem;
+    border: 1px solid #D2B48C;
+    color: #3E3E3E;
+    background-color: transparent;
+    font-size: 0.9rem;
+    min-width: 200px;
+    appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23D2B48C' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    cursor: pointer;
+  }
+  
+  .emptyState {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: white;
+    border: 1px dashed #D2B48C;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .emptyStateImage {
+    width: 80px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .emptyStateTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .emptyStateDesc {
+    font-family: 'Cormorant Garamond', serif;
+    color: #3E3E3E;
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  @media (max-width: 768px) {
+    .categoryBanner {
+      height: 250px;
+    }
+    
+    .categoryTitle {
+      font-size: 1.8rem;
+    }
+    
+    .categoryDescription {
+      font-size: 1rem;
+      padding: 0 1rem;
+    }
+    
+    .filtersSection {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .sortDropdown {
+      width: 100%;
+    }
+    
+    .sortSelect {
+      width: 100%;
+    }
+  }

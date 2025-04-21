@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './PaymentSection.module.css';
 import { useNavigate } from 'react-router-dom'; 
 import api from '../../api';
+import { FaCreditCard, FaPaypal, FaLock } from 'react-icons/fa';
 
 const PaymentSection = () => {
   const [loading, setLoading] = useState(false);
@@ -13,14 +14,12 @@ const PaymentSection = () => {
 
   // Cargar el script de ePayco al montar el componente
   useEffect(() => {
-    // Verificar si el script ya existe para evitar duplicados
     if (!document.getElementById('epayco-script')) {
       const script = document.createElement('script');
       script.id = 'epayco-script';
       script.src = 'https://checkout.epayco.co/checkout.js';
       script.async = true;
       
-      // Manejar errores al cargar el script
       script.onerror = () => {
         console.error('Error al cargar el script de ePayco');
         setError('No se pudo cargar el procesador de pagos de ePayco');
@@ -29,12 +28,8 @@ const PaymentSection = () => {
       document.body.appendChild(script);
     }
     
-    // Limpiar el script al desmontar si es necesario
     return () => {
       // Opcional: remover el script al desmontar
-      // Comentado porque podría ser útil mantenerlo para otras páginas
-      // const scriptElement = document.getElementById('epayco-script');
-      // if (scriptElement) document.body.removeChild(scriptElement);
     };
   }, []);
 
@@ -53,14 +48,12 @@ const PaymentSection = () => {
   // Función para verificar el carrito antes del pago
   async function verifyCartBeforePayment() {
     try {
-      // Verificar si el carrito está asociado al usuario
       const response = await api.post('verify_cart/', { cart_code: cart_code });
       console.log("Verificación de carrito exitosa:", response.data);
       return true;
     } catch (error) {
       console.error("Error en verificación de carrito:", error);
       if (error.response && error.response.status === 400) {
-        // Intentar asociar el carrito al usuario
         try {
           const associateResponse = await api.post('associate_cart_to_user/', { cart_code: cart_code });
           console.log("Carrito asociado:", associateResponse.data);
@@ -80,7 +73,6 @@ const PaymentSection = () => {
     setLoading(true);
     setError('');
     
-    // Verificar si el usuario está autenticado
     const accessToken = localStorage.getItem("access");
     if (!accessToken) {
       setError("Debes iniciar sesión para continuar");
@@ -97,14 +89,12 @@ const PaymentSection = () => {
     console.log("Iniciando pago con cart_code:", cart_code);
     console.log("Usando token de autenticación:", !!accessToken);
     
-    // Verificar el carrito antes de pagar
     const isCartValid = await verifyCartBeforePayment();
     if (!isCartValid) {
       setLoading(false);
       return;
     }
     
-    // Continuar con el pago normal
     api.post("initiate_paypal_payment/", { cart_code: cart_code })
       .then(res => {
         console.log("Respuesta completa:", res);
@@ -122,7 +112,6 @@ const PaymentSection = () => {
           console.error('Status:', err.response.status);
           console.error('Server response:', err.response.data);
           
-          // Manejar distintos errores según el código de estado
           if (err.response.status === 401) {
             setError('Tu sesión ha expirado. Por favor, inicia sesión nuevamente.');
           } else if (err.response.data.error === 'Invalid cart code') {
@@ -142,14 +131,12 @@ const PaymentSection = () => {
     setEpaycoLoading(true);
     setError('');
     
-    // Verificar si está disponible el SDK de ePayco
     if (!window.ePayco) {
       setError("El procesador de pago ePayco no está disponible. Por favor, recarga la página e intenta de nuevo.");
       setEpaycoLoading(false);
       return;
     }
     
-    // Verificaciones básicas
     const accessToken = localStorage.getItem("access");
     if (!accessToken) {
       setError("Debes iniciar sesión para continuar");
@@ -163,29 +150,24 @@ const PaymentSection = () => {
       return;
     }
     
-    // Verificar el carrito antes de pagar
     const isCartValid = await verifyCartBeforePayment();
     if (!isCartValid) {
       setEpaycoLoading(false);
       return;
     }
     
-    // Iniciar el pago con ePayco
     api.post("initiate_epayco_payment/", { cart_code: cart_code })
       .then(res => {
         console.log("Respuesta ePayco:", res.data);
         
-        // Configurar el handler de ePayco con los datos recibidos
         try {
           const handler = window.ePayco.checkout.configure({
             key: res.data.public_key,
             test: res.data.test
           });
           
-          // Abrir el modal de pago de ePayco
           handler.open({
-            //Parametros obligatorios
-            name: "Productos Shoppit",
+            name: "Productos Incorrectos",
             description: res.data.description,
             invoice: res.data.invoice,
             currency: res.data.currency,
@@ -194,24 +176,20 @@ const PaymentSection = () => {
             tax: res.data.tax,
             country: res.data.country,
             lang: "es",
-
             test: true, 
             
-            //Parametros opcionales
             external: res.data.external,
             extra1: res.data.extra1,
             response: res.data.response,
             
-            // Datos del cliente
             name_billing: res.data.name,
             last_name_billing: res.data.last_name,
             email_billing: res.data.email,
             address_billing: res.data.address,
             mobilephone_billing: res.data.cell_phone,
-            type_doc_billing: "cc" // Tipo de documento por defecto
+            type_doc_billing: "cc"
           });
           
-          // Manejador para cuando se cierra el modal de ePayco (cancelación)
           window.ePayco.checkout.onCloseModal = function() {
             console.log('El usuario cerró el modal de pago');
           }
@@ -235,64 +213,90 @@ const PaymentSection = () => {
       });
   }
 
-
   return (
-    <div className="col-md-4">
-      <div className={`card ${styles.card}`}>
-        <div className="card-header" style={{ backgroundColor: '#6050DC', color: 'white' }}>
-          <h5>Opciones de pago</h5>
+    <div className="col-lg-5">
+      <div className={styles.paymentCard}>
+        <div className={styles.paymentHeader}>
+          <h3 className={styles.paymentTitle}>Métodos de pago incorrectos</h3>
         </div>
-        <div className="card-body">
+        
+        <div className={styles.paymentBody}>
           {!authStatus && (
-            <div className="alert alert-warning mb-3" role="alert">
-              Debes iniciar sesión para realizar el pago
+            <div className={styles.warningMessage}>
+              <p>Debes iniciar sesión para realizar el pago</p>
             </div>
           )}
           
           {error && (
-            <div className="alert alert-danger mb-3" role="alert">
-              {error}
+            <div className={styles.errorMessage}>
+              <p>{error}</p>
             </div>
           )}
           
-          {/* PayPal Button */}
-          <button 
-            className={`btn btn-primary w-100 mb-3 ${styles.paypalButton}`} 
-            id="paypal-button"
-            onClick={paypalPayment}
-            disabled={loading || !cart_code || !authStatus}
-          >
-            <i className="bi bi-paypal"></i> {loading ? "Cargando..." : "Pagar con PayPal"}
-          </button>
-
-          {/* ePayco Button */}
-          <button 
-            className={`btn btn-warning w-100 ${styles.epaycoButton}`} 
-            id="epayco-button"
-            onClick={epaycoPayment}
-            disabled={epaycoLoading || !cart_code || !authStatus}
-            style={{ backgroundColor: '#00a1ff', borderColor: '#00a1ff', color: 'white' }}
-          >
-            <i className="bi bi-credit-card"></i> {epaycoLoading ? "Cargando..." : "Pagar con ePayco"}
-          </button>
+          <p className={styles.paymentIntro}>
+            Selecciona el método de pago que prefieras para adquirir tus incorrecciones deliberadas:
+          </p>
           
-          {!cart_code && (
-            <div className="mt-3 text-center text-danger">
-              <small>No se ha encontrado un carrito válido</small>
+          <div className={styles.paymentMethods}>
+            <button 
+              className={styles.paymentButton}
+              onClick={paypalPayment}
+              disabled={loading || !cart_code || !authStatus}
+            >
+              <div className={styles.buttonContent}>
+                <FaPaypal className={styles.paymentIcon} />
+                <span className={styles.buttonText}>
+                  {loading ? "Procesando..." : "Pagar con PayPal"}
+                </span>
+              </div>
+            </button>
+            
+            <div className={styles.divider}>
+              <span>O</span>
             </div>
-          )}
+            
+            <button 
+              className={styles.paymentButton}
+              onClick={epaycoPayment}
+              disabled={epaycoLoading || !cart_code || !authStatus}
+            >
+              <div className={styles.buttonContent}>
+                <FaCreditCard className={styles.paymentIcon} />
+                <span className={styles.buttonText}>
+                  {epaycoLoading ? "Procesando..." : "Pagar con tarjeta (ePayco)"}
+                </span>
+              </div>
+            </button>
+          </div>
           
-          {!authStatus && (
-            <div className="mt-3 text-center">
-              <button 
-                className="btn btn-link" 
-                onClick={() => navigate('/login')}
-              >
-                Iniciar sesión
-              </button>
-            </div>
-          )}
+          <div className={styles.securityInfo}>
+            <FaLock className={styles.lockIcon} />
+            <p className={styles.securityText}>
+              Pago seguro (excepto por un margen deliberado del 1% de arte imprevisible)
+            </p>
+          </div>
         </div>
+        
+        {!authStatus && (
+          <div className={styles.loginPrompt}>
+            <p>¿Aún no has iniciado sesión?</p>
+            <button 
+              className={styles.loginButton} 
+              onClick={() => navigate('/login')}
+            >
+              Iniciar sesión
+            </button>
+          </div>
+        )}
+      </div>
+      
+      <div className={styles.paymentNote}>
+        <h4 className={styles.noteTitle}>Nota sobre nuestra pasarela de pago</h4>
+        <p className={styles.noteText}>
+          Por filosofía de marca, nuestro sistema de pago es deliberadamente impredecible. 
+          Podrías encontrar pequeñas sorpresas durante el proceso. Si tienes algún problema, 
+          no dudes en contactarnos — prometemos resolver tu inconveniente de manera artísticamente incorrecta.
+        </p>
       </div>
     </div>
   );

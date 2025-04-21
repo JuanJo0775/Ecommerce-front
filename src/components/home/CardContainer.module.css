@@ -1,0 +1,114 @@
+.productsSection {
+    padding: 5rem 0;
+    background-color: #F4F1ED;
+    position: relative;
+  }
+  
+  .productsSection::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('/img/texture-bg.png');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  
+  .sectionHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .sectionTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+    position: relative;
+    display: inline-block;
+  }
+  
+  .sectionSubtitle {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #D9A5A0;
+    font-size: 1.1rem;
+    font-style: italic;
+    max-width: 600px;
+    margin: 0 auto 1.5rem;
+  }
+  
+  .decorativeLine {
+    width: 120px;
+    height: 3px;
+    background-color: #D2B48C;
+    margin: 0 auto;
+    transform: skewX(-15deg);
+  }
+  
+  .filterTabs {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 2.5rem;
+  }
+  
+  .filterTab {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    font-size: 1rem;
+    padding: 0.5rem 1.2rem;
+    background-color: transparent;
+    border: 1px solid #D2B48C;
+    color: #3E3E3E;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .filterTab::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 0;
+    background-color: #9EBA9B;
+    bottom: 0;
+    left: 0;
+    transition: height 0.3s;
+    z-index: -1;
+  }
+  
+  .filterTab:hover {
+    color: #3E3E3E;
+    border-color: #9EBA9B;
+  }
+  
+  .filterTab:hover::after {
+    height: 5px;
+  }
+  
+  .filterTab.active {
+    background-color: #D2B48C;
+    color: #3E3E3E;
+    border-color: #D2B48C;
+    font-weight: 600;
+  }
+  
+  @media (max-width: 768px) {
+    .sectionTitle {
+      font-size: 1.8rem;
+    }
+    
+    .filterTabs {
+      gap: 8px;
+    }
+    
+    .filterTab {
+      font-size: 0.9rem;
+      padding: 0.4rem 0.8rem;
+    }
+  }

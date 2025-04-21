@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react';
 import NavBarLink from './NavBarLink';
-import { FaCartShopping } from 'react-icons/fa6';
+import { FaShoppingBag } from 'react-icons/fa';
 import styles from './NavBar.module.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import Chatbot from '../chatbot/Chatbot';
+import pic from '../../assets/incorrect-frog.png';
 
 const NavBar = ({numCartItems}) => {
   const [showChatbot, setShowChatbot] = useState(false);
@@ -16,10 +17,17 @@ const NavBar = ({numCartItems}) => {
 
   return (
     <>
-      <nav className={`navbar navbar-expand-lg navbar-light bg-white shadow-sm py-3 ${styles.stickyNav}`}>
+      <nav className={`navbar navbar-expand-lg navbar-light py-3 ${styles.stickyNav}`}>
         <div className="container">
-          <Link className="navbar-brand fw-bold text-uppercase" to="/">
-            SHOPPIT
+          <Link className="navbar-brand fw-bold" to="/">
+            <div className={styles.brandContainer}>
+              <img 
+                src={pic}
+                alt="La Tienda Incorrecta" 
+                className={styles.navLogo} 
+              />
+              <span className={styles.brandText}>La Tienda Incorrecta</span>
+            </div>
           </Link>
           <button
             className="navbar-toggler"
@@ -34,14 +42,13 @@ const NavBar = ({numCartItems}) => {
           </button>
           <div className="collapse navbar-collapse" id="navbarContent">
             <NavBarLink toggleChatbot={toggleChatbot} />
-            <Link to="/cart" className={`btn btn-dark ms-3 rounded-pill position-relative ${styles.responsiveCart}`}>
-              <FaCartShopping />
-              {numCartItems == 0 || <span
-                className="position-absolute top-6 start-100 translate-middle badge rounded-pill"
-                style={{ fontSize: '0.85rem', padding: '0.5em 0.65em', backgroundColor: '#60549f' }}
-              >
-                {numCartItems}
-              </span>}
+            <Link to="/cart" className={`position-relative ${styles.cartButton} ${styles.responsiveCart}`}>
+              <FaShoppingBag />
+              {numCartItems > 0 && (
+                <span className={styles.cartBadge}>
+                  {numCartItems}
+                </span>
+              )}
             </Link>
           </div>
         </div>

@@ -1,0 +1,214 @@
+.checkoutContainer {
+    background-color: #F4F1ED;
+    min-height: 80vh;
+    position: relative;
+  }
+  
+  .checkoutContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/texture-bg.png');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  
+  .pageHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .pageTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 2.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.5rem;
+  }
+  
+  .pageSubtitle {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #D9A5A0;
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  
+  .decorativeLine {
+    width: 100px;
+    height: 2px;
+    background-color: #D2B48C;
+    margin: 0 auto;
+    transform: skewX(-15deg);
+  }
+  
+  .checkoutSteps {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 3rem 0;
+  }
+  
+  .checkoutStep {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+  }
+  
+  .stepNumber {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #3E3E3E;
+    color: #F4F1ED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    border: 2px solid #3E3E3E;
+    transition: all 0.3s;
+  }
+  
+  .stepName {
+    font-family: 'Cormorant Garamond', serif;
+    color: #3E3E3E;
+    font-size: 0.9rem;
+  }
+  
+  .stepDivider {
+    width: 100px;
+    height: 2px;
+    background-color: #D2B48C;
+    margin: 0 1rem;
+    position: relative;
+    z-index: 1;
+  }
+  
+  .activeStep .stepNumber {
+    background-color: #9EBA9B;
+    color: #3E3E3E;
+    transform: scale(1.1);
+  }
+  
+  .activeStep .stepName {
+    font-weight: 600;
+  }
+  
+  .checkoutFooter {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px dashed rgba(210, 180, 140, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+  
+  .footerInfo {
+    flex: 1;
+    min-width: 300px;
+  }
+  
+  .footerInfoTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+  
+  .footerInfoTitle::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 40px;
+    height: 2px;
+    background-color: #D9A5A0;
+    transform: skewX(-15deg);
+  }
+  
+  .footerInfoText {
+    font-family: 'Cormorant Garamond', serif;
+    color: #3E3E3E;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  /* Empty checkout styles */
+  .emptyCheckoutContainer {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #F4F1ED;
+    padding: 3rem 0;
+  }
+  
+  .emptyCheckout {
+    max-width: 500px;
+    text-align: center;
+    padding: 3rem;
+    background-color: white;
+    border: 1px dashed #D2B48C;
+    position: relative;
+  }
+  
+  .emptyCheckout::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed #D9A5A0;
+    pointer-events: none;
+  }
+  
+  .emptyCheckoutImage {
+    width: 120px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    animation: slight-wobble 8s ease-in-out infinite;
+  }
+  
+  @keyframes slight-wobble {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+  
+  .emptyCheckoutTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  
+  .emptyCheckoutMessage {
+    font-family: 'Cormorant Garamond', serif;
+    color: #3E3E3E;
+    margin-bottom: 2rem;
+  }
+  
+  .backToShopBtn {
+    display: inline-block;
+    background-color: #9EBA9B;
+    color: #3E3E3E;
+    padding: 0.8rem 1.5rem;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s;
+  }
+  
+  .backToShopBtn:hover {
+    background-color: #D2B48C;
+    transform: translateY(-3px);
+    color: #3E3E3E;
+  }

@@ -1,0 +1,315 @@
+.profileContainer {
+    background-color: #F4F1ED;
+    min-height: 80vh;
+    position: relative;
+  }
+  
+  .profileContainer::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/img/texture-bg.png');
+    opacity: 0.05;
+    pointer-events: none;
+  }
+  
+  .loadingContainer {
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .profileHeader {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  
+  .profileTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .profileSubtitle {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #D9A5A0;
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+  
+  .decorativeLine {
+    width: 100px;
+    height: 3px;
+    background-color: #D2B48C;
+    margin: 0 auto;
+    transform: skewX(-15deg);
+  }
+  
+  .profileTabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  
+  .profileTab {
+    padding: 0.8rem 1.5rem;
+    background: none;
+    border: 1px solid #D2B48C;
+    color: #3E3E3E;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .profileTab::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background-color: #9EBA9B;
+    transition: height 0.3s;
+    z-index: -1;
+  }
+  
+  .profileTab:hover::after {
+    height: 4px;
+  }
+  
+  .activeTab {
+    background-color: #D2B48C;
+    color: #3E3E3E;
+    font-weight: 600;
+  }
+  
+  .profileContent {
+    margin-bottom: 4rem;
+  }
+  
+  .infoSection {
+    background-color: white;
+    border: 1px solid rgba(210, 180, 140, 0.3);
+    padding: 2rem;
+    margin-bottom: 2rem;
+    transform: rotate(-0.3deg);
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+  
+  .infoSection:hover {
+    transform: translateY(-5px) rotate(0deg);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .actionButtons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .actionButton {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: #9EBA9B;
+    color: #3E3E3E;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: none;
+    font-size: 0.9rem;
+    text-align: center;
+  }
+  
+  .actionButton:hover {
+    background-color: #D2B48C;
+    transform: translateY(-3px);
+    color: #3E3E3E;
+  }
+  
+  .ordersSection, .certificatesSection {
+    min-height: 300px;
+  }
+  
+  .certificatesHeader {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .certificatesTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .certificatesDesc {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #3E3E3E;
+    font-size: 1rem;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .certificatesList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+  
+  .certificateItem {
+    background-color: white;
+    border: 1px solid #D9A5A0;
+    padding: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .certificateItem:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .certificateItem::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed rgba(210, 180, 140, 0.5);
+    pointer-events: none;
+  }
+  
+  .certificateHeader {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    border-bottom: 1px dashed rgba(210, 180, 140, 0.5);
+    padding-bottom: 1rem;
+  }
+  
+  .certificateIcon {
+    width: 30px;
+    height: auto;
+    margin-right: 1rem;
+  }
+  
+  .certificateProductName {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.1rem;
+    margin: 0;
+  }
+  
+  .certificateText {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #3E3E3E;
+    font-style: italic;
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .certificateDetails {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-size: 0.85rem;
+  }
+  
+  .certificateNumber {
+    color: #9EBA9B;
+    font-weight: 600;
+  }
+  
+  .certificateDate {
+    color: #D9A5A0;
+  }
+  
+  .emptyState {
+    text-align: center;
+    padding: 3rem 2rem;
+    background-color: white;
+    border: 1px dashed #D2B48C;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .emptyStateImage {
+    width: 80px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  .emptyStateTitle {
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    color: #3E3E3E;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .emptyStateDesc {
+    font-family: 'Cormorant Garamond', 'Libre Baskerville', serif;
+    color: #3E3E3E;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  
+  .shopButton {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    background-color: #D2B48C;
+    color: #3E3E3E;
+    font-family: 'Metropolis', 'Playfair Display', serif;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s;
+    border: none;
+  }
+  
+  .shopButton:hover {
+    background-color: #9EBA9B;
+    transform: translateY(-3px);
+    color: #3E3E3E;
+  }
+  
+  @media (max-width: 768px) {
+    .profileTabs {
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .profileTab {
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+    
+    .certificatesList {
+      grid-template-columns: 1fr;
+    }
+    
+    .profileTitle {
+      font-size: 1.8rem;
+    }
+  }
