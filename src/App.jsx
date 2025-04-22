@@ -15,6 +15,8 @@ import UserProfilePage from "./components/user/UserProfilePage";
 import EditProfilePage from "./components/user/EditProfilePage";
 import ChangePasswordPage from "./components/user/ChangePasswordPage";
 import PaymentStatusPage from "./components/payments/PaymentsStatusPage";
+import ChatbotPage from "./components/chatbot/ChatbotPage";
+
 
 // Importa los componentes necesarios para Chatbase
 import ChatbaseBot from "./components/chatbot/ChatbaseBot";
@@ -68,22 +70,7 @@ const App = () => {
           } />
           <Route path="payment-status" element={<PaymentStatusPage setNumberCartItems={setNumberCartItems} />} />
           <Route path="*" element={<NotFoundPage />} />
-          <Route path="chat" element={
-            <ProtectedRoute>
-              {/* Aquí simplemente mostraremos una página que activa el chatbot */}
-              <div className="container my-5 text-center">
-                <h2>Asistente Virtual de Shoppit</h2>
-                <p className="lead mb-4">Nuestro asistente virtual está listo para ayudarte con cualquier consulta.</p>
-                <button 
-                  className="btn btn-primary"
-                  style={{ backgroundColor: '#6050DC', borderColor: '#6050DC' }}
-                  onClick={() => window.chatbase && window.chatbase('show')}
-                >
-                  Abrir asistente
-                </button>
-              </div>
-            </ProtectedRoute>
-          } />
+          <Route path="chat" element={<ChatbotPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -32,7 +32,7 @@ const MainLayout = ({numCartItems}) => {
       <ToastContainer />
       <Outlet />
       <Footer />
-      {/* Eliminamos el componente ChatbaseBot para evitar duplicación */}
+
     </>
   );
 };
