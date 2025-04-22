@@ -6,17 +6,18 @@ import ProductPage from "./components/product/ProductPage";
 import CartPage from "./components/cart/CartPage";
 import { useState, useEffect } from "react";
 import LoginPage from "./components/user/LoginPage"; 
-import RegisterPage from "./components/user/RegisterPage"; // Nueva página de registro
+import RegisterPage from "./components/user/RegisterPage";
 import api from "./api";
 import CheckoutPage from "./components/checkout/CheckoutPage";
 import ProtectedRoute from "./components/ui/ProtectedRoute";
 import { AuthProvider } from "./components/context/AuthContext";
 import UserProfilePage from "./components/user/UserProfilePage";
-import EditProfilePage from "./components/user/EditProfilePage"; // Nueva página de edición de perfil
-import ChangePasswordPage from "./components/user/ChangePasswordPage"; // Nueva página de cambio de contraseña
+import EditProfilePage from "./components/user/EditProfilePage";
+import ChangePasswordPage from "./components/user/ChangePasswordPage";
 import PaymentStatusPage from "./components/payments/PaymentsStatusPage";
-import ChatbotPage from "./components/chatbot/ChatbotPage";
 
+// Importa los componentes necesarios para Chatbase
+import ChatbaseBot from "./components/chatbot/ChatbaseBot";
 
 const App = () => {
   const [numCartItems, setNumberCartItems] = useState(0);
@@ -49,7 +50,7 @@ const App = () => {
             </ProtectedRoute>
           } />
           <Route path="login" element={<LoginPage />} />
-          <Route path="register" element={<RegisterPage />} /> {/* Ruta para registro */}
+          <Route path="register" element={<RegisterPage />} />
           <Route path="profile" element={
             <ProtectedRoute>
               <UserProfilePage />
@@ -69,7 +70,18 @@ const App = () => {
           <Route path="*" element={<NotFoundPage />} />
           <Route path="chat" element={
             <ProtectedRoute>
-              <ChatbotPage />
+              {/* Aquí simplemente mostraremos una página que activa el chatbot */}
+              <div className="container my-5 text-center">
+                <h2>Asistente Virtual de Shoppit</h2>
+                <p className="lead mb-4">Nuestro asistente virtual está listo para ayudarte con cualquier consulta.</p>
+                <button 
+                  className="btn btn-primary"
+                  style={{ backgroundColor: '#6050DC', borderColor: '#6050DC' }}
+                  onClick={() => window.chatbase && window.chatbase('show')}
+                >
+                  Abrir asistente
+                </button>
+              </div>
             </ProtectedRoute>
           } />
         </Route>

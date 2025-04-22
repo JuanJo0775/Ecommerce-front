@@ -1,18 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React from 'react';
 import NavBarLink from './NavBarLink';
 import { FaCartShopping } from 'react-icons/fa6';
 import styles from './NavBar.module.css';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
-import Chatbot from '../chatbot/Chatbot';
+import { useContext } from 'react';
 
 const NavBar = ({numCartItems}) => {
-  const [showChatbot, setShowChatbot] = useState(false);
   const { isAuthenticated } = useContext(AuthContext);
-
-  const toggleChatbot = () => {
-    setShowChatbot(!showChatbot);
-  };
 
   return (
     <>
@@ -33,7 +28,7 @@ const NavBar = ({numCartItems}) => {
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarContent">
-            <NavBarLink toggleChatbot={toggleChatbot} />
+            <NavBarLink />
             <Link to="/cart" className={`btn btn-dark ms-3 rounded-pill position-relative ${styles.responsiveCart}`}>
               <FaCartShopping />
               {numCartItems == 0 || <span
@@ -46,9 +41,6 @@ const NavBar = ({numCartItems}) => {
           </div>
         </div>
       </nav>
-      
-      {/* Solo mostrar el chatbot si el usuario está autenticado y ha hecho clic en el botón */}
-      {isAuthenticated && showChatbot && <Chatbot toggleChat={toggleChatbot} />}
     </>
   );
 };

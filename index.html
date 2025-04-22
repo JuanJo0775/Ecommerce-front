@@ -9,5 +9,99 @@
   <body>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      // Script para crear un botón personalizado que controle Chatbase
+      document.addEventListener('DOMContentLoaded', function() {
+        // Variable para rastrear el estado
+        let chatIsOpen = false;
+        
+        // Crear nuestro propio botón personalizado
+        function createCustomButton() {
+          // Verificar si el botón ya existe
+          if (document.getElementById('custom-chatbase-button')) {
+            return;
+          }
+          
+          // Crear el botón personalizado
+          const customButton = document.createElement('button');
+          customButton.id = 'custom-chatbase-button';
+          customButton.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>';
+          
+          // Estilos para el botón
+          customButton.style.position = 'fixed';
+          customButton.style.bottom = '20px';
+          customButton.style.right = '20px';
+          customButton.style.width = '60px';
+          customButton.style.height = '60px';
+          customButton.style.borderRadius = '50%';
+          customButton.style.backgroundColor = '#6050DC';
+          customButton.style.color = 'white';
+          customButton.style.border = 'none';
+          customButton.style.cursor = 'pointer';
+          customButton.style.zIndex = '9999';
+          customButton.style.display = 'flex';
+          customButton.style.alignItems = 'center';
+          customButton.style.justifyContent = 'center';
+          customButton.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.2)';
+          
+          // Ocultar en la página de chat
+          if (window.location.pathname === '/chat') {
+            customButton.style.display = 'none';
+          }
+          
+          // Manejar clics en el botón
+          customButton.addEventListener('click', function() {
+            if (chatIsOpen) {
+              // Cerrar el chat
+              window.chatbase('hide');
+              customButton.style.backgroundColor = '#6050DC';
+              chatIsOpen = false;
+            } else {
+              // Abrir el chat
+              window.chatbase('show');
+              customButton.style.backgroundColor = '#d84848';
+              chatIsOpen = true;
+            }
+          });
+          
+          // Añadir el botón al cuerpo del documento
+          document.body.appendChild(customButton);
+          
+          // Ocultar el botón original de Chatbase
+          setTimeout(function() {
+            const originalButton = document.querySelector('.chatbase-bubble-button');
+            if (originalButton) {
+              originalButton.style.display = 'none';
+            }
+          }, 1000);
+        }
+        
+        // Esperar a que Chatbase se inicialice
+        const interval = setInterval(function() {
+          if (window.chatbase && typeof window.chatbase === 'function') {
+            clearInterval(interval);
+            createCustomButton();
+            
+            // Escuchar eventos de Chatbase para sincronizar estados
+            window.chatbase('on', 'show', function() {
+              chatIsOpen = true;
+              const button = document.getElementById('custom-chatbase-button');
+              if (button) button.style.backgroundColor = '#d84848';
+            });
+            
+            window.chatbase('on', 'hide', function() {
+              chatIsOpen = false;
+              const button = document.getElementById('custom-chatbase-button');
+              if (button) button.style.backgroundColor = '#6050DC';
+            });
+          }
+        }, 1000);
+        
+        // Detener el intervalo después de 15 segundos si no se inicializa
+        setTimeout(function() {
+          clearInterval(interval);
+        }, 15000);
+      });
+      </script>
   </body>
 </html>

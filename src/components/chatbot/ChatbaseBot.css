@@ -1,0 +1,51 @@
+.chatbase-toggle-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+  
+  .chatbase-toggle-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s;
+  }
+  
+  .chatbase-toggle-button:hover {
+    transform: scale(1.05);
+  }
+  
+  /* Esta clase se aplicará cuando el chat esté visible */
+  .chatbase-active {
+    background-color: #d84848 !important;
+  }
+  
+  /* Ocultar el icono predeterminado de Chatbase si es necesario */
+  .chatbase-iframe-container iframe {
+    border: none !important;
+    border-radius: 10px !important;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15) !important;
+  }
+  
+  /* Estilos responsivos */
+  @media (max-width: 768px) {
+    .chatbase-toggle-container {
+      bottom: 15px;
+      right: 15px;
+    }
+    
+    .chatbase-toggle-button {
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+    }
+  }
